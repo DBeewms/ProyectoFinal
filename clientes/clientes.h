@@ -11,6 +11,6 @@ typedef struct
     char nombre[30];
     char apellido[30];
     char direccion[100];
-}cliente[MAX];
+}cliente;
 
 cliente Clien[MAX];

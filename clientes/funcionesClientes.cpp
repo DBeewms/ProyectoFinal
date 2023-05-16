@@ -69,6 +69,11 @@ void MostrarCliente(){
     system("cls||clear");
     if(lastReg==0){
         cout << "No hay clientes registrados " << endl;
+        return;
+    }
+    for(int i = 0; i < lastReg; i++)
+    {
+        cout << "======================\n";
         MostrarCliente(i);
     }
     cout << "Ultimo cliente..... " <<endl;
