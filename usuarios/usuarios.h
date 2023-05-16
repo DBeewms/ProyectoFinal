@@ -10,6 +10,6 @@ typedef struct
     char apellido[30];
     char email[100];
     char password[20];
-}usuario[MAX];
+} usuario;
 
 usuario usuarios[MAX];
