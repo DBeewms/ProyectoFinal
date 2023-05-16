@@ -14,7 +14,7 @@ int lastReg = 0;
 void agregarCliente(cliente Cliente);
 // Read
 void MostrarCliente(int pos);
-void MostrarCliente();
+void MostrarClientes();
 int BuscarCliente(char id[]);
 void ClienteInicial(int pos);
 cliente getClientes(int pos);
@@ -65,7 +65,7 @@ int BuscarCliente(char id[])
     return posicion;
 }
 
-void MostrarCliente(){
+void MostrarClientes(){
     system("cls||clear");
     if(lastReg==0){
         cout << "No hay clientes registrados " << endl;
