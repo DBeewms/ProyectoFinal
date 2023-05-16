@@ -13,4 +13,4 @@ typedef struct
     char direccion[100];
 }cliente[MAX];
 
-cliente clientes[MAX];
+cliente Clien[MAX];
