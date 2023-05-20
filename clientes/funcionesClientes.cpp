@@ -218,3 +218,8 @@ void MenuComplete()
     guardarCliente();
 }
 
+void guardarClientes(){
+    registroCliente=fopen("datos.bin", "wb");
+    fwrite(Clien, sizeof(cliente), lastReg, registroCliente);
+    fclose(registroCliente);
+}
