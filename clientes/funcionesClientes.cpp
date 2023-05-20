@@ -29,7 +29,7 @@ void MenuComplete();
 FILE *registroCliente;
 void guardarCliente();
 void leerCliente();
-void CalcularReg(FILE *archivo);
+int CalcularReg(FILE *archivo);
 
 // Se definen las funciones
 
@@ -218,8 +218,24 @@ void MenuComplete()
     guardarCliente();
 }
 
-void guardarClientes(){
-    registroCliente=fopen("datos.bin", "wb");
+void guardarClientes()
+{
+    registroCliente = fopen("datos.bin", "wb");
     fwrite(Clien, sizeof(cliente), lastReg, registroCliente);
     fclose(registroCliente);
 }
+
+void leerCliente()
+{
+    registroCliente = fopen("datos.bin", "rb");
+    if (registroCliente == NULL)
+    {
+        return;
+    }
+    lastReg = CalcularReg(registroCliente);
+    fread(Clien, sizeof(cliente), MAX, registroCliente);
+
+    fclose(registroCliente);
+}
+
+
