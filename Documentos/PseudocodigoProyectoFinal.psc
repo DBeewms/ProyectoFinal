@@ -148,27 +148,23 @@ SubProceso editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usu
 	Definir contador1 Como Entero;
 	contador1<-1;
 	
-	Escribir "Ingrese el ID del producto a editar:";
-	Leer id_producto[contador1];
+	Escribir "Ingrese el ID del usuario a editar:";
+	Leer id_usuario[contador1];
 	Encontrado <- Falso;
-	Para i <- 0 Hasta cantidad_productos-1 Con Paso 1 Hacer
-		Si idProducto[i] == id_producto[contador1] Entonces
-			Escribir "Ingresa el nuevo nombre del producto:";
-			Leer producto[i];
-			Escribir "Ingrese la nueva descripcion del producto:";
-			Leer descripcion[i];
-			Escribir "Ingrese el nuevo ID del producto:";
-			Leer idProducto[i];
-			Escribir "Ingrese la nueva cantidad de producto:";
-			Leer cantidad[i];
-			Escribir "Ingrese el nuevo precio del producto:";
-			Leer precio[i];
+	Para i <- 0 Hasta cantidad_usuarios-1 Con Paso 1 Hacer
+		Si idUsuario[i] == id_usuario[contador1] Entonces
+			Escribir "Ingresa el nuevo nombre de usuario:";
+			Leer usuario[i];
+			Escribir "Ingrese el nuevo ID de usuario:";
+			Leer idUsuario[i];
+			Escribir "Ingrese la password de usuario:";
+			Leer password[i];
 			Encontrado <- Verdadero;
-			Escribir "Producto editado correctamente.";
+			Escribir "Usuario editado correctamente.";
 		FinSi
 	FinPara
 	Si Encontrado == Falso Entonces
-		Escribir "No se encontró el producto con el ID especificado.";
+		Escribir "No se encontró el usuario con el ID especificado.";
 	FinSi
 FinSubProceso
 
@@ -249,6 +245,8 @@ Proceso proyectoFinal
 				cantidad_usuarios<-cantidad_usuarios+1;
 			10:
 				mostrarUsuarios(usuario, idUsuario, password, cantidad_usuarios, i);
+			11:
+				editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
 			20:	Escribir "Saliendo del programa...";
 			De Otro Modo:
 				Escribir "Opción inválida. Inténtalo de nuevo.";
