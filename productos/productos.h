@@ -9,7 +9,7 @@ typedef struct
     char IDP[10];
     char nombreP[30];
     char descripcion[100];
-    float precio;
+    char precio[]; //se cambio de float a char
 }producto;
 
 producto productos[MAX];
