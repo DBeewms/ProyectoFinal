@@ -238,4 +238,16 @@ void leerCliente()
     fclose(registroCliente);
 }
 
+int CalcularReg(FILE *archivo)
+{
+    int tam_archivo, num_clientes;
+    // se obtiene el tamaño del archivo
+    fseek(archivo, 0, SEEK_END);
+    tam_archivo = ftell(archivo);
+    rewind(archivo);
 
+    // Se calcula el numero de clientes
+    num_clientes = tam_archivo / sizeof(cliente);
+    
+    return num_clientes;
+}
