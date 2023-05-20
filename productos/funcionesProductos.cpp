@@ -4,34 +4,29 @@
 #include "productos.h"
 
 using namespace std;
-// Se pone la posicion de donde se iniciara
 
 int lastReg = 0;
 
-// se agregan fuciones
-
-// Create
 void agregarProducto(producto productos);
-// Read
+
 void MostrarProducto(int pos);
 void MostrarProductos();
 int BuscarProducto(char id[]);
 void ProductoInicial(int pos);
 producto getProducto(int pos);
-// update
+
 void editarProducto(producto productos, int pos);
-// delete
+
 void borrarProducto(int pos);
-// Menu
+
 int menuP();
 void MenuComplete();
-// Archivos
+
 FILE *registroProducto;
 void guardarProducto();
 void leerProducto();
 int CalcularReg(FILE *archivo);
 
-// Se definen las funciones
 
 void agregarProducto(producto product)
 {
