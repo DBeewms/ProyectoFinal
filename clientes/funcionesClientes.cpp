@@ -200,9 +200,21 @@ void MenuComplete()
             MostrarCliente(pos);
             system("pause");
             break;
+        case 5:
+            system("cls||clear");
+            MostrarClientes();
+            system("pause");
+        case 6:
+            cout << "Saliendo....... " << endl;
+            break;
 
         default:
+            system("clear||cls");
+            cout << " Opcion no valida " << endl;
+            system("pause");
             break;
         }
     } while (op != 6);
+    guardarCliente();
 }
+
