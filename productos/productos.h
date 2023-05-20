@@ -10,6 +10,6 @@ typedef struct
     char nombreP[30];
     char descripcion[100];
     float precio;
-}producto[MAX];
+}producto;
 
 producto productos[MAX];
