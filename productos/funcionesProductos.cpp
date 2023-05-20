@@ -11,52 +11,53 @@ int lastReg = 0;
 // se agregan fuciones
 
 // Create
-void agregarCliente(cliente Cliente);
+void agregarProducto(producto productos);
 // Read
-void MostrarCliente(int pos);
-void MostrarClientes();
-int BuscarCliente(char id[]);
-void ClienteInicial(int pos);
-cliente getClientes(int pos);
+void MostrarProducto(int pos);
+void MostrarProductos();
+int BuscarProducto(char id[]);
+void ProductoInicial(int pos);
+producto getProducto(int pos);
 // update
-void editarCliente(cliente Clientes, int pos);
+void editarProducto(producto productos, int pos);
 // delete
-void borrarCliente(int pos);
+void borrarProducto(int pos);
 // Menu
-int menuC();
+int menuP();
 void MenuComplete();
 // Archivos
-FILE *registroCliente;
-void guardarCliente();
-void leerCliente();
+FILE *registroProducto;
+void guardarProducto();
+void leerProducto();
 int CalcularReg(FILE *archivo);
 
 // Se definen las funciones
 
-void agregar(cliente Cliente)
+void agregarProducto(producto product)
 {
-    Clien[lastReg] = Cliente;
+    productos[lastReg] = product;
     lastReg++;
 }
 
-void MostrarCliente(int pos)
+void MostrarProducto(int pos)
 {
-    cout << "ID: " << Clien[pos].ID << endl;
-    cout << "NOMBRE: " << Clien[pos].nombre << endl;
-    cout << "APELLIDO: " << Clien[pos].apellido << endl;
+    cout << "ID: " << productos[pos].IDP << endl;
+    cout << "NOMBRE DEL PRODUCTO: " << productos[pos].nombreP << endl;
+    cout << "DESCRIPCION: " << productos[pos].descripcion << endl;
+    cout << "PRECIO: " << productos[pos].precio << endl;
 }
 
-cliente getClientes(int pos)
+producto getProducto(int pos)
 {
-    return Clien[pos];
+    return productos[pos];
 }
 
-int BuscarCliente(char id[])
+int BuscarProducto(char id[])
 {
     int posicion = 0;
     for (int i = 0; i < lastReg; i++)
     {
-        if (strcmp(id, Clien[i].ID) == 0)
+        if (strcmp(id, productos[i].IDP) == 0)
         {
             posicion = i;
         }
@@ -64,7 +65,7 @@ int BuscarCliente(char id[])
     return posicion;
 }
 
-void MostrarClientes()
+void MostrarProductos()
 {
     system("cls||clear");
     if (lastReg == 0)
@@ -75,17 +76,17 @@ void MostrarClientes()
     for (int i = 0; i < lastReg; i++)
     {
         cout << "======================\n";
-        MostrarCliente(i);
+        MostrarProducto(i);
     }
-    cout << "Ultimo cliente..... " << endl;
+    cout << "Ultimo producto..... " << endl;
 }
 
-void editarCliente(cliente Clientes, int pos)
+void editarProducto(producto product, int pos)
 {
-    Clien[pos];
+    productos[pos];
 }
 
-void borrarCliente(int pos)
+void borrarProducto(int pos)
 {
     if (pos == lastReg)
     {
@@ -94,20 +95,21 @@ void borrarCliente(int pos)
     }
     for (int i = pos; i < lastReg - 1; i++)
     {
-        Clien[i] = Clien[i + 1];
+        productos[i] = productos[i + 1];
     }
     lastReg--;
-    ClienteInicial(lastReg);
+    ProductoInicial(lastReg);
 }
 
-void ClienteInicial(int pos)
+void ProductoInicial(int pos)
 {
-    strcpy(Clien[pos].ID, "");
-    strcpy(Clien[pos].nombre, "");
-    strcpy(Clien[pos].apellido, "");
+    strcpy(productos[pos].IDP, "");
+    strcpy(productos[pos].nombreP, "");
+    strcpy(productos[pos].descripcion, "");
+    strcpy(productos[pos].precio, "");
 }
 
-int menuC()
+int menuP()
 {
     int op;
 
@@ -129,42 +131,46 @@ void MenuComplete()
 {
     int op, pos, resp;
     char ID[14];
-    cliente Clientes;
-    leerCliente();
+    producto productos;
+    leerProducto();
 
     do
     {
         system("cls||clear");
 
-        op = menuC();
+        op = menuP();
         switch (op)
         {
         case 1:
             system("cls||clear");
             cout << " ID: " << endl;
             cout << " Nombre: " << endl;
-            cout << " Apellido: " << endl;
-            scanf(" %[^\n]", Clientes.ID);
-            scanf(" %[^\n]", Clientes.nombre);
-            scanf(" %[^\n]", Clientes.apellido);
-            agregarCliente(Clientes);
+            cout << " DESCRIPCION: " << endl;
+            cout << " PRECIO:" <<endl;
+            scanf(" %[^\n]", productos.IDP);
+            scanf(" %[^\n]", productos.nombreP);
+            scanf(" %[^\n]", productos.descripcion);
+            scanf(" %[^\n]", productos.precio);
+            agregarProducto(productos);
             system("pause");
 
             break;
         case 2:
             system("cls||clear");
             cout << "Escribe el ID a buscar: " << endl;
-            scanf(" %[^\n]", Clientes.ID);
-            pos = BuscarCliente(ID);
-            MostrarCliente(pos);
+            scanf(" %[^\n]", productos.IDP);
+            pos = BuscarProducto(ID);
+            MostrarProducto(pos);
             cout << " Datos a editar " << endl;
             cout << " ID: " << endl;
-            scanf(" %[^\n]", Clientes.ID);
+            scanf(" %[^\n]", productos.IDP);
             cout << " Nombre: " << endl;
-            scanf(" %[^\n]", Clientes.nombre);
-            cout << " Apellido: " << endl;
-            scanf(" %[^\n]", Clientes.apellido);
-            editarCliente(Clientes, pos);
+            scanf(" %[^\n]", productos.nombreP);
+            cout << " Descripcion: " << endl;
+            scanf(" %[^\n]", productos.descripcion);
+            cout << " Precio" << endl;
+            scanf(" %[^\n]", productos.precio);
+            editarProducto(productos, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -176,14 +182,14 @@ void MenuComplete()
             }
             cout << "Escribe el ID del cliente: " << endl;
             cin >> ID;
-            pos = BuscarCliente(ID);
-            Clientes = getClientes(pos);
-            cout << "¿Realmente quiere solicitar elimimar a este cliente: " << Clientes.nombre << "" << Clientes.apellido << " ? " << endl;
+            pos = BuscarProducto(ID);
+            productos = getProducto(pos);
+            cout << "¿Realmente quiere solicitar elimimar a este producto: " << productos.nombreP << "" << productos.IDP << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
             cin >> resp;
             if (resp == 1)
             {
-                borrarCliente(pos);
+                borrarProducto(pos);
                 cout << " Registro Eliminado " << endl;
             }
             else
@@ -194,15 +200,15 @@ void MenuComplete()
             break;
         case 4:
             system("cls||clear");
-            cout << " Escribe el ID a buscar: " << endl;
-            scanf(" %[^\n]", Clientes.ID);
-            pos = BuscarCliente(ID);
-            MostrarCliente(pos);
+            cout << " Escribe el ID del producto a buscar: " << endl;
+            scanf(" %[^\n]", productos.IDP);
+            pos = BuscarProducto(ID);
+            MostrarProducto(pos);
             system("pause");
             break;
         case 5:
             system("cls||clear");
-            MostrarClientes();
+            MostrarProductos();
             system("pause");
         case 6:
             cout << "Saliendo....... " << endl;
@@ -215,39 +221,39 @@ void MenuComplete()
             break;
         }
     } while (op != 6);
-    guardarCliente();
+    guardarProducto();
 }
 
-void guardarClientes()
+void guardarProducto()
 {
-    registroCliente = fopen("datos.bin", "wb");
-    fwrite(Clien, sizeof(cliente), lastReg, registroCliente);
-    fclose(registroCliente);
+    registroProducto = fopen("datos.bin", "wb");
+    fwrite(productos, sizeof(producto), lastReg, registroProducto);
+    fclose(registroProducto);
 }
 
 void leerCliente()
 {
-    registroCliente = fopen("datos.bin", "rb");
-    if (registroCliente == NULL)
+    registroProducto = fopen("datos.bin", "rb");
+    if (registroProducto == NULL)
     {
         return;
     }
-    lastReg = CalcularReg(registroCliente);
-    fread(Clien, sizeof(cliente), MAX, registroCliente);
+    lastReg = CalcularReg(registroProducto);
+    fread(productos, sizeof(producto), MAX, registroProducto);
 
-    fclose(registroCliente);
+    fclose(registroProducto);
 }
 
 int CalcularReg(FILE *archivo)
 {
-    int tam_archivo, num_clientes;
+    int tam_archivo, num_productos;
     // se obtiene el tamaño del archivo
     fseek(archivo, 0, SEEK_END);
     tam_archivo = ftell(archivo);
     rewind(archivo);
 
     // Se calcula el numero de clientes
-    num_clientes = tam_archivo / sizeof(cliente);
+    num_productos = tam_archivo / sizeof(producto);
     
-    return num_clientes;
+    return num_productos;
 }
