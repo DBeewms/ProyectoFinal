@@ -122,7 +122,7 @@ int menuP()
     return op;
 }
 
-void MenuComplete()
+void MenuCompleteProduct()
 {
     int op, pos, resp;
     char ID[14];
