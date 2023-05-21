@@ -51,6 +51,30 @@ SubProceso editarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente)
 	FinSi
 FinSubProceso
 
+SubProceso eliminarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente)
+	Definir i Como Entero;
+	Definir Encontrado Como Logico;
+	Definir contador1 Como Entero;
+	contador1<-1;
+	
+	Escribir "Ingrese el ID del cliente a eliminar:";
+	Leer id_cliente[contador1];
+	Encontrado <- Falso;
+	Para i <- 0 Hasta cantidad_clientes-1 Con Paso 1 Hacer
+		Si ids[i] == id_cliente[contador1] Entonces
+			nombres[i] <- "";
+			apellidos[i] <- "";
+			ids[i] <- "";
+			Encontrado <- Verdadero;
+			cantidad_clientes <- cantidad_clientes - 1;
+			Escribir "Cliente eliminado correctamente.";
+		FinSi
+	FinPara
+	Si Encontrado == Falso Entonces
+		Escribir "No se encontró un cliente con el ID especificado.";
+	FinSi
+FinSubProceso
+
 //Productos
 
 SubProceso agregarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos)
@@ -62,7 +86,7 @@ SubProceso agregarProducto(producto, cantidad, idProducto, descripcion, precio, 
 	Leer idProducto[cantidad_productos];
 	Escribir "Ingrese la cantidad del producto:";
 	Leer cantidad[cantidad_productos];
-	Escribir "Dime el precio del producto";
+	Escribir "Dime el precio del producto:";
 	Leer precio[cantidad_productos];
 	cantidad_productos <- cantidad_productos + 1;
 	Escribir "Producto agregado correctamente.";
@@ -106,7 +130,33 @@ SubProceso editarProducto(producto, cantidad, idProducto, descripcion, precio, c
 			Escribir "Ingrese el nuevo precio del producto:";
 			Leer precio[i];
 			Encontrado <- Verdadero;
-			Escribir "Producto editado correctamente.";
+			Escribir "Producto eliminado correctamente.";
+		FinSi
+	FinPara
+	Si Encontrado == Falso Entonces
+		Escribir "No se encontró el producto con el ID especificado.";
+	FinSi
+FinSubProceso
+
+SubProceso eliminarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto) 
+	Definir i Como Entero;
+	Definir Encontrado Como Logico;
+	Definir contador1 Como Entero;
+	contador1<-1;
+	
+	Escribir "Ingrese el ID del producto a eliminar:";
+	Leer id_producto[contador1];
+	Encontrado <- Falso;
+	Para i <- 0 Hasta cantidad_productos-1 Con Paso 1 Hacer
+		Si idProducto[i] == id_producto[contador1] Entonces
+			producto[i] <- "";
+			descripcion[i] <- "";
+			idProducto[i] <- "";
+			cantidad[i] <- "";
+			precio[i] <- "";
+			Encontrado <- Verdadero;
+			cantidad_productos <- cantidad_productos - 1;
+			Escribir "Producto eliminado correctamente.";
 		FinSi
 	FinPara
 	Si Encontrado == Falso Entonces
@@ -168,6 +218,29 @@ SubProceso editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usu
 	FinSi
 FinSubProceso
 
+SubProceso eliminarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario) 
+	Definir i Como Entero;
+	Definir Encontrado Como Logico;
+	Definir contador1 Como Entero;
+	contador1<-1;
+	
+	Escribir "Ingrese el ID del usuario a eliminar:";
+	Leer id_usuario[contador1];
+	Encontrado <- Falso;
+	Para i <- 0 Hasta cantidad_usuarios-1 Con Paso 1 Hacer
+		Si idUsuario[i] == id_usuario[contador1] Entonces
+			usuario[i] <- "";
+			idUsuario[i] <- "";
+			password[i] <- "";
+			Encontrado <- Verdadero;
+			cantidad_usuarios <- cantidad_usuarios - 1;
+			Escribir "Usuario eliminado correctamente.";
+		FinSi
+	FinPara
+	Si Encontrado == Falso Entonces
+		Escribir "No se encontró el producto con el ID especificado.";
+	FinSi
+FinSubProceso
 
 //pricipal
 
@@ -187,8 +260,7 @@ Proceso proyectoFinal
     Definir cantidad_clientes, cantidad_productos, cantidad_usuarios Como Entero;
 	Definir opcion Como Entero;
 	
-	
-	
+	Definir EncontradoDelCliente Como Logico;
 	
 	cantidad_productos <- 0;
     cantidad_clientes <- 0;
@@ -232,7 +304,8 @@ Proceso proyectoFinal
 				
 			3: 
 				editarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente);
-				
+			4:
+				eliminarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente);
 			5:
 				agregarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos);
 				cantidad_productos <- cantidad_productos + 1;
@@ -240,6 +313,8 @@ Proceso proyectoFinal
 				mostrarProductos(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, i);
 			7:
 				editarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
+			8:
+				eliminarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
 			9:
 				agregarUsuario(usuario, idUsuario, password, cantidad_usuarios);
 				cantidad_usuarios<-cantidad_usuarios+1;
@@ -247,6 +322,8 @@ Proceso proyectoFinal
 				mostrarUsuarios(usuario, idUsuario, password, cantidad_usuarios, i);
 			11:
 				editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
+			12:
+				eliminarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
 			20:	Escribir "Saliendo del programa...";
 			De Otro Modo:
 				Escribir "Opción inválida. Inténtalo de nuevo.";
