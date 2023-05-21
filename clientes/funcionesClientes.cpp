@@ -125,7 +125,7 @@ int menuC()
     return op;
 }
 
-void MenuComplete()
+void MenuCompleteClient()
 {
     int op, pos, resp;
     char ID[14];
