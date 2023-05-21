@@ -111,11 +111,11 @@ int menuP()
     cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
     cout << "Seleccione una de las opciones " << endl;
     cout << "Ver la cantidad de clientes registrados " << lastReg << endl;
-    cout << "1. Agregar cliente " << endl;
-    cout << "2. Editar cliete " << endl;
-    cout << "3. Eliminar cliente " << endl;
-    cout << "4. Buscar cliente " << endl;
-    cout << "5. Mostrar todos los clientes " << endl;
+    cout << "1. Agregar producto " << endl;
+    cout << "2. Editar producto " << endl;
+    cout << "3. Eliminar producto " << endl;
+    cout << "4. Buscar producto " << endl;
+    cout << "5. Mostrar todos los productos " << endl;
     cout << "6. Salir " << endl;
     cout << " Digite la opcion " << endl;
     cin >> op;
