@@ -248,6 +248,6 @@ int CalcularReg(FILE *archivo)
 
     // Se calcula el numero de clientes
     num_clientes = tam_archivo / sizeof(cliente);
-    
+
     return num_clientes;
 }
