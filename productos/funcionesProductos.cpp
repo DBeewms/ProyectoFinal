@@ -226,7 +226,7 @@ void guardarProducto()
     fclose(registroProducto);
 }
 
-void leerCliente()
+void leerProducto()
 {
     registroProducto = fopen("datos.bin", "rb");
     if (registroProducto == NULL)
@@ -247,7 +247,6 @@ int CalcularReg(FILE *archivo)
     tam_archivo = ftell(archivo);
     rewind(archivo);
 
-    // Se calcula el numero de clientes
     num_productos = tam_archivo / sizeof(producto);
     
     return num_productos;
