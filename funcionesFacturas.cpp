@@ -20,11 +20,18 @@ factura getFacturas(int pos);
 int buscandoCliente(int position11);
 int buscandoProducto(int position22);
 
+void agregarDatosParaFactura();
+
 void MostrarFactura();
 void MostrarFacturas();
 void editarFactura();
 void ExisteFactura();
 void EliminarFacturas();
+
+FILE *baseDatosFactura;
+void guardarFactura();
+void leerFactura();
+int CalcularRegFactura(FILE *regFactura);
 
 void menuPrincipal();
 
@@ -72,30 +79,26 @@ int buscandoProducto(int position22){
     char IDpos2[14];
     producto productos;
 
-
     cout << " Escribe el ID producto para agregar: " << endl;
     scanf(" %[^\n]", productos.IDP);
     position22 = BuscarProducto(IDpos2);
     return position22;
 }
-
-void MostrarFactura(){
+//agregar char y for
+void agregarDatosParaFactura(){
     int position11; 
     int position22;
 
     buscandoCliente(position11);
-    buscandoProducto(position22);
-
     position11 = buscandoCliente(position11);
+
+    buscandoProducto(position22);
     position22 = buscandoProducto(position22);
 
+    //retornar 2 valores, retornar char
     MostrarCliente(position11);
     MostrarProducto(position22);
 }
-
-
-
-
 
 void menuPrincipal(){
     int option;
@@ -142,6 +145,34 @@ void menuPrincipal(){
             break;
         }
     } while (option != 7);
+}
+
+void guardarFactura(){
+    baseDatosFactura = fopen("datosfactura.bin", "wb");
+    fwrite(recibo, sizeof(factura), lastFactura, baseDatosFactura);
+    fclose(baseDatosFactura);
+}
+
+void leerFactura(){
+    baseDatosFactura = fopen("datosfactura.bin", "rb");
+    if (baseDatosFactura == NULL)
+    {
+        return;
+    }
+    lastFactura = CalcularRegFactura(baseDatosFactura);
+    fread(recibo, sizeof(factura), 500, baseDatosFactura);
+
+    fclose(baseDatosFactura);
+}
+
+int CalcularRegFactura(FILE *regFactura){
+    int tam_archivo, num_facturas;
+
+    fseek(regFactura, 0, SEEK_END);
+    tam_archivo = ftell(regFactura);
+    rewind(regFactura);
+
+    num_facturas = tam_archivo / sizeof(factura);
     
-    
+    return num_facturas;
 }
