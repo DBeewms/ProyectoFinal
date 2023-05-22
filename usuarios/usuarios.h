@@ -6,8 +6,7 @@
 typedef struct
 {
     char IDU;
-    char nombreU[30];
-    char apellido[30];
+    char nombreU[30]; 
     char email[100];
     char password[20];
 } usuario;
