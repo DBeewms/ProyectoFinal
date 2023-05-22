@@ -5,7 +5,7 @@
 
 typedef struct
 {
-    char IDU;
+    char IDU[14];
     char nombreU[30]; 
     char email[100];
     char password[20];
