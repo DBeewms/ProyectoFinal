@@ -18,7 +18,7 @@ void agregarFactura(factura facturas);
 factura getFacturas(int pos);
 
 int buscandoCliente(int position11);
-int buscandoProducto(int position22);
+char buscandoProducto(char position22[]);
 
 void agregarDatosParaFactura();
 
@@ -73,7 +73,10 @@ int buscandoCliente(int position11){
     return position11;
 }
 
-int buscandoProducto(int position22){
+//en desarrollo
+/*proposito: que se puedan agregar varios productos y que los ID se 
+guarden en un arreglo para imprimir todo una sola vez*/
+char buscandoProducto(char position22[]){
     leerProducto();
 
     char IDpos2[14];
@@ -82,8 +85,12 @@ int buscandoProducto(int position22){
     cout << " Escribe el ID producto para agregar: " << endl;
     scanf(" %[^\n]", productos.IDP);
     position22 = BuscarProducto(IDpos2);
-    return position22;
+    
+    
+    return position22[];
 }
+
+//en desarrollo
 //agregar char y for
 void agregarDatosParaFactura(){
     int position11; 
