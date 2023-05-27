@@ -178,12 +178,12 @@ void MenuCompleteClient()
             cout << " Escribe el numero de factura a buscar: " << endl;
             scanf(" %[^\n]", facturas.numFactura);
             pos = BuscarFactura(IDF);
-            MostrarCliente(pos);
+            MostrarFactura(pos);
             system("pause");
             break;
         case 3:
             system("cls");
-            MostrarClientes();
+            MostrarFacturas();
             system("pause");
             break;
         case 4:
@@ -196,7 +196,7 @@ void MenuCompleteClient()
             break;
         }
     } while (op != 6);
-    guardarClientes();
+    guardarFactura();
 }
 
 void guardarFactura(){
