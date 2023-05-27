@@ -3,8 +3,6 @@
 #include <string.h>
 #define MAX 200
 
-
-
 typedef struct 
 {
     char ID[14];
