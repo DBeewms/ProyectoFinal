@@ -27,13 +27,13 @@ int menuC();
 void MenuComplete();
 // Archivos
 FILE *registroCliente;
-void guardarCliente();
+void guardarClientes();
 void leerCliente();
 int CalcularReg(FILE *archivo);
 
 // Se definen las funciones
 
-void agregar(cliente Cliente)
+void agregarCliente(cliente Cliente)
 {
     Clien[lastReg] = Cliente;
     lastReg++;
@@ -80,10 +80,10 @@ void MostrarClientes()
     cout << "Ultimo cliente..... " << endl;
 }
 
-void editarCliente(cliente Clientes, int pos)
+/*void editarCliente(cliente Clientes, int pos)
 {
     Clien[pos];
-}
+}*/
 
 void borrarCliente(int pos)
 {
@@ -134,13 +134,13 @@ void MenuCompleteClient()
 
     do
     {
-        system("cls||clear");
+        system("cls");
 
         op = menuC();
         switch (op)
         {
         case 1:
-            system("cls||clear");
+            system("cls");
             cout << " ID: " << endl;
             cout << " Nombre: " << endl;
             cout << " Apellido: " << endl;
@@ -152,7 +152,7 @@ void MenuCompleteClient()
 
             break;
         case 2:
-            system("cls||clear");
+            system("cls");
             cout << "Escribe el ID a buscar: " << endl;
             scanf(" %[^\n]", Clientes.ID);
             pos = BuscarCliente(ID);
@@ -164,7 +164,7 @@ void MenuCompleteClient()
             scanf(" %[^\n]", Clientes.nombre);
             cout << " Apellido: " << endl;
             scanf(" %[^\n]", Clientes.apellido);
-            editarCliente(Clientes, pos);
+            //editarCliente(Clientes, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -193,7 +193,7 @@ void MenuCompleteClient()
             system("pause");
             break;
         case 4:
-            system("cls||clear");
+            system("cls");
             cout << " Escribe el ID a buscar: " << endl;
             scanf(" %[^\n]", Clientes.ID);
             pos = BuscarCliente(ID);
@@ -201,21 +201,22 @@ void MenuCompleteClient()
             system("pause");
             break;
         case 5:
-            system("cls||clear");
+            system("cls");
             MostrarClientes();
             system("pause");
+            break;
         case 6:
             cout << "Saliendo....... " << endl;
             break;
 
         default:
-            system("clear||cls");
+            system("cls");
             cout << " Opcion no valida " << endl;
             system("pause");
             break;
         }
     } while (op != 6);
-    guardarCliente();
+    guardarClientes();
 }
 
 void guardarClientes()

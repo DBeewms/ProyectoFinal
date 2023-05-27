@@ -5,7 +5,7 @@
 
 
 
-typedef struct
+typedef struct 
 {
     char ID[14];
     char nombre[30];
