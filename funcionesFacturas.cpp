@@ -124,7 +124,67 @@ void agregarDatosParaFactura(){
 
 }
 
+int menuF()
+{
+    int op;
 
+    cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
+    cout << "Seleccione una de las opciones " << endl;
+    cout << "Ver la cantidad de facturas hasta el  momento " << lastFactura << endl;
+    cout << "1. Agregar datos a la factura" << endl;
+    cout << "2. Buscar factura " << endl;
+    cout << "3. Mostrar todas las facturas " << endl;
+    cout << "3. Salir " << endl;
+    cout << " Digite la opcion " << endl;
+    cin >> op;
+    return op;
+}
+
+void MenuCompleteClient()
+{
+    int op, pos, resp;
+    char ID[14];
+    factura facturas;
+    leerCliente();
+
+    do
+    {
+        system("cls");
+
+        op = menuC();
+        switch (op)
+        {
+        case 1:
+            system("cls");
+            agregarDatosParaFactura();
+            agregarFactura(factura facturas);
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            cout << " Escribe el ID a buscar: " << endl;
+            scanf(" %[^\n]", Clientes.ID);
+            pos = BuscarCliente(ID);
+            MostrarCliente(pos);
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            MostrarClientes();
+            system("pause");
+            break;
+        case 4:
+            cout << "Saliendo....... " << endl;
+            break;
+        default:
+            system("cls");
+            cout << " Opcion no valida " << endl;
+            system("pause");
+            break;
+        }
+    } while (op != 6);
+    guardarClientes();
+}
 
 void guardarFactura(){
     baseDatosFactura = fopen("datosfactura.bin", "wb");
