@@ -18,14 +18,13 @@ void editarUsuario(usuario Usuarios, int pos);
 /*Delete*/
 void eliminarUsuario(int pos);
 /*Menu*/
-void menuUsuarios();
 int menuU();
-void menuCompleto();
+void MenuCompleteUsuario();
 /*Archivos*/
 FILE *registroUsuario;
 void guardarUsuario();
 void leerUsuario();
-void calcularReg(FILE *archivo);
+int CalcularRegU(FILE *archivo);
 
 
 /*Se definen las funciones*/
@@ -82,10 +81,10 @@ void mostrarUsuarios()
 }
 
 
-void editarUsuario(usuario Usuarios, int pos)
+/*void editarUsuario(usuario Usuarios, int pos)
 {
     usuarios[pos];
-}
+}*/
 
 void borrarUsuario(int pos)
 {
@@ -172,7 +171,7 @@ void MenuCompleteUsuario()
             scanf(" %[^\n]", usuarios.email);
             cout << " Contraseña" << endl;
             scanf(" %[^\n]", usuarios.password);
-            editarUsuario(usuarios, pos);
+            //editarUsuario(usuarios, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -212,6 +211,7 @@ void MenuCompleteUsuario()
             system("cls||clear");
             mostrarUsuarios();
             system("pause");
+            break;
         case 6:
             cout << "Saliendo....... " << endl;
             break;
@@ -233,20 +233,20 @@ void guardarUsuario()
     fclose(registroUsuario);
 }
 
-void leerProducto()
+void leerUsuario()
 {
     registroUsuario = fopen("datos.bin", "rb");
     if (registroUsuario == NULL)
     {
         return;
     }
-    lastRegU = CalcularReg(registroUsuario);
+    lastRegU = CalcularRegU(registroUsuario);
     fread(usuarios, sizeof(usuario), MAX, registroUsuario);
 
     fclose(registroUsuario);
 }
 
-int CalcularReg(FILE *archivo)
+int CalcularRegU(FILE *archivo)
 {
     int tam_archivo, num_usuarios;
     // se obtiene el tamaño del archivo
