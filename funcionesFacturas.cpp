@@ -24,7 +24,7 @@ int calcularCantidadProducto(int cantidad);
 
 void agregarDatosParaFactura();
 
-void MostrarFactura();
+void MostrarFactura(int pos);
 void MostrarFacturas();
 void editarFactura();
 void ExisteFactura();
