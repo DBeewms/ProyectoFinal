@@ -73,9 +73,10 @@ int buscandoCliente(int position11){
     return position11;
 }
 
-//en desarrollo
-/*proposito: que se puedan agregar varios productos y que los ID se 
-guarden en un arreglo para imprimir todo una sola vez*/
+/*
+en desarrollo
+proposito: que se puedan agregar varios productos y que los ID se 
+guarden en un arreglo para imprimir todo una sola vez
 char buscandoProducto(char position22[]){
     leerProducto();
 
@@ -88,10 +89,11 @@ char buscandoProducto(char position22[]){
     
     
     return position22[];
-}
+}*/
 
-//en desarrollo
-//agregar char y for
+/*
+en desarrollo
+agregar char y for
 void agregarDatosParaFactura(){
     int position11; 
     int position22;
@@ -106,53 +108,8 @@ void agregarDatosParaFactura(){
     MostrarCliente(position11);
     MostrarProducto(position22);
 }
+*/
 
-void menuPrincipal(){
-    int option;
-    do
-    {
-        system("cls||clear");
-
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
-        cout << "Seleccione una de las opciones: " << endl;
-        cout << "1. Seccion de clientes" << endl;
-        cout << "2. Seccion de productos" << endl;
-        cout << "3. Seccion de usuarios" << endl;
-        cout << "4. Seccion de facturas" << endl;
-        cout << "7. Salir" << endl;
-        cin >> option;
-
-        switch (option)
-        {
-        case 1:
-            system("cls||clear");
-            cout << "Entrando a la seccion de clientes...";
-            MenuCompleteClient();
-            system("pause");
-            break;
-        case 2:
-            system("cls||clear");
-            cout << "Entrando a la seccion de productos...";
-            MenuCompleteProduct();
-            system("pause");
-            break;
-        case 3:
-            system("cls||clear");
-            cout << "Entrando a la seccion de usuarios...";
-            system("pause");
-            break;    
-        case 4:
-            system("cls||clear");
-            cout << "Entrando a la seccion de facturas...";
-            system("pause");
-            break;    
-        default:
-            cout << "Opcion invalida, selecciona una opcion del menu...";
-            system("pause");
-            break;
-        }
-    } while (option != 7);
-}
 
 void guardarFactura(){
     baseDatosFactura = fopen("datosfactura.bin", "wb");
