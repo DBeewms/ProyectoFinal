@@ -16,6 +16,7 @@ void pieDeFactura();
 void agregarFactura(factura facturas);
 
 factura getFacturas(int pos);
+int BuscarFactura(char idF[]);
 
 int buscandoCliente(int position11);
 int buscandoProducto();
@@ -98,6 +99,18 @@ int buscandoProducto(){
     return pos;
 }
 
+int BuscarFactura(char idF[])
+{
+    int posicion = 0;
+    for (int i = 0; i < lastFactura; i++)
+    {
+        if (strcmp(idF, recibo[i].numFactura) == 0)
+        {
+            posicion = i;
+        }
+    }
+    return posicion;
+}
 
 void agregarDatosParaFactura(){
     int position11; 
@@ -143,7 +156,7 @@ int menuF()
 void MenuCompleteClient()
 {
     int op, pos, resp;
-    char ID[14];
+    char IDF[14];
     factura facturas;
     leerCliente();
 
@@ -157,14 +170,14 @@ void MenuCompleteClient()
         case 1:
             system("cls");
             agregarDatosParaFactura();
-            agregarFactura(factura facturas);
+            agregarFactura(facturas);
             system("pause");
             break;
         case 2:
             system("cls");
-            cout << " Escribe el ID a buscar: " << endl;
-            scanf(" %[^\n]", Clientes.ID);
-            pos = BuscarCliente(ID);
+            cout << " Escribe el numero de factura a buscar: " << endl;
+            scanf(" %[^\n]", facturas.numFactura);
+            pos = BuscarFactura(IDF);
             MostrarCliente(pos);
             system("pause");
             break;
