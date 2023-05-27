@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int lastReg = 0;
+int lastRegP = 0;
 
 void agregarProducto(producto productos);
 
@@ -20,18 +20,18 @@ void editarProducto(producto productos, int pos);
 void borrarProducto(int pos);
 
 int menuP();
-void MenuComplete();
+void MenuCompleteProduct();
 
 FILE *registroProducto;
 void guardarProducto();
 void leerProducto();
-int CalcularReg(FILE *archivo);
+int CalcularRegP(FILE *archivo);
 
 
 void agregarProducto(producto product)
 {
-    productos[lastReg] = product;
-    lastReg++;
+    productos[lastRegP] = product;
+    lastRegP++;
 }
 
 void MostrarProducto(int pos)
@@ -50,7 +50,7 @@ producto getProducto(int pos)
 int BuscarProducto(char id[])
 {
     int posicion = 0;
-    for (int i = 0; i < lastReg; i++)
+    for (int i = 0; i < lastRegP; i++)
     {
         if (strcmp(id, productos[i].IDP) == 0)
         {
@@ -63,12 +63,12 @@ int BuscarProducto(char id[])
 void MostrarProductos()
 {
     system("cls||clear");
-    if (lastReg == 0)
+    if (lastRegP == 0)
     {
         cout << "No hay clientes registrados " << endl;
         return;
     }
-    for (int i = 0; i < lastReg; i++)
+    for (int i = 0; i < lastRegP; i++)
     {
         cout << "======================\n";
         MostrarProducto(i);
@@ -76,24 +76,24 @@ void MostrarProductos()
     cout << "Ultimo producto..... " << endl;
 }
 
-void editarProducto(producto product, int pos)
+/*void editarProducto(producto product, int pos)
 {
     productos[pos];
-}
+}*/
 
 void borrarProducto(int pos)
 {
-    if (pos == lastReg)
+    if (pos == lastRegP)
     {
         cout << "No hay registro " << endl;
         return;
     }
-    for (int i = pos; i < lastReg - 1; i++)
+    for (int i = pos; i < lastRegP - 1; i++)
     {
         productos[i] = productos[i + 1];
     }
-    lastReg--;
-    ProductoInicial(lastReg);
+    lastRegP--;
+    ProductoInicial(lastRegP);
 }
 
 void ProductoInicial(int pos)
@@ -110,7 +110,7 @@ int menuP()
 
     cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
     cout << "Seleccione una de las opciones " << endl;
-    cout << "Ver la cantidad de clientes registrados " << lastReg << endl;
+    cout << "Ver la cantidad de clientes registrados " << lastRegP << endl;
     cout << "1. Agregar producto " << endl;
     cout << "2. Editar producto " << endl;
     cout << "3. Eliminar producto " << endl;
@@ -131,13 +131,13 @@ void MenuCompleteProduct()
 
     do
     {
-        system("cls||clear");
+        system("cls");
 
         op = menuP();
         switch (op)
         {
         case 1:
-            system("cls||clear");
+            system("cls");
             cout << " ID: " << endl;
             cout << " Nombre: " << endl;
             cout << " DESCRIPCION: " << endl;
@@ -151,7 +151,7 @@ void MenuCompleteProduct()
 
             break;
         case 2:
-            system("cls||clear");
+            system("cls");
             cout << "Escribe el ID a buscar: " << endl;
             scanf(" %[^\n]", productos.IDP);
             pos = BuscarProducto(ID);
@@ -165,12 +165,12 @@ void MenuCompleteProduct()
             scanf(" %[^\n]", productos.descripcion);
             cout << " Precio" << endl;
             scanf(" %[^\n]", productos.precio);
-            editarProducto(productos, pos);
+            //editarProducto(productos, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
         case 3:
-            if (lastReg == 0)
+            if (lastRegP == 0)
             {
                 cout << " No hay nada que eliminar " << endl;
                 break;
@@ -194,7 +194,7 @@ void MenuCompleteProduct()
             system("pause");
             break;
         case 4:
-            system("cls||clear");
+            system("cls");
             cout << " Escribe el ID del producto a buscar: " << endl;
             scanf(" %[^\n]", productos.IDP);
             pos = BuscarProducto(ID);
@@ -202,15 +202,15 @@ void MenuCompleteProduct()
             system("pause");
             break;
         case 5:
-            system("cls||clear");
+            system("cls");
             MostrarProductos();
             system("pause");
+            break;
         case 6:
             cout << "Saliendo....... " << endl;
             break;
-
         default:
-            system("clear||cls");
+            system("cls");
             cout << " Opcion no valida " << endl;
             system("pause");
             break;
@@ -222,7 +222,7 @@ void MenuCompleteProduct()
 void guardarProducto()
 {
     registroProducto = fopen("datos.bin", "wb");
-    fwrite(productos, sizeof(producto), lastReg, registroProducto);
+    fwrite(productos, sizeof(producto), lastRegP, registroProducto);
     fclose(registroProducto);
 }
 
@@ -233,13 +233,13 @@ void leerProducto()
     {
         return;
     }
-    lastReg = CalcularReg(registroProducto);
+    lastRegP = CalcularRegP(registroProducto);
     fread(productos, sizeof(producto), MAX, registroProducto);
 
     fclose(registroProducto);
 }
 
-int CalcularReg(FILE *archivo)
+int CalcularRegP(FILE *archivo)
 {
     int tam_archivo, num_productos;
     // se obtiene el tamaño del archivo
