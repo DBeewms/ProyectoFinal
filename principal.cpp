@@ -6,7 +6,6 @@
 
 using namespace std;
 
-void menuAdmin();
 
 int main()
 {
