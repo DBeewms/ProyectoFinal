@@ -6,6 +6,7 @@
 using namespace std;
 
 void menuAdmin();
+void menuExterior();
 
 void menuInicial(){
     int opcion;
@@ -80,4 +81,41 @@ void menuAdmin(){
             break;
         }
     } while (optionA != 5);
+}
+
+void menuExterior(){
+    int optionC;
+    do
+    {
+        system("cls||clear");
+
+        cout << "Seleccione una de las opciones: " << endl;
+        cout << "1. Crear una cuenta nueva" << endl;
+        cout << "2. Iniciar sesion" << endl;
+        cout << "3. Salir" << endl;
+        cin >> optionC;
+        
+        switch (optionC)
+        {
+        case 1:
+            system("cls");
+            cout << "Entrando a la seccion de clientes...";
+            MenuCompleteClient();
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            cout << "Entrando a la seccion de productos...";
+            MenuCompleteProduct();
+            system("pause");
+            break;
+        case 3:
+            cout << "Saliendo....... " << endl;
+            break;
+        default:
+            cout << "Opcion invalida, selecciona una opcion del menu...";
+            system("pause");
+            break;
+        }
+    } while (optionC != 3);
 }
