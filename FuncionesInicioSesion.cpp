@@ -3,15 +3,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include "usuarios/funcionesUsuarios.cpp"
+#include "clientes/funcionesClientes.cpp"
+#include "productos/funcionesProductos.cpp"
+#include "funcionesFacturas.cpp"
+
 using namespace std;
 
+void menuInicial();
 void menuAdmin();
-void menuExterior();
-
-void menuInicial(){
+void menuEmpleados();
+/////////////////////////////////////////////////////////////////////////////////
+void menuInicial()
+{
     int opcion;
     cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
     cout << "Elegir el tipo de cuenta" << endl;
+    cout << "1. Administrador " << endl;
+    cout << "2. Empleados " << endl;
+    cout << "3. Clientes " << endl;
 
     do
     {
@@ -20,7 +29,7 @@ void menuInicial(){
         {
         case 1:
             system("cls");
-            void menuAdmin();
+            menuAdmin();
             system("pause");
             break;
         case 2:
@@ -29,10 +38,11 @@ void menuInicial(){
         default:
             break;
         }
-    } while (opcion !=2);
+    } while (opcion != 2);
 }
-
-void menuAdmin(){
+/////////////////////////////////////////////////////////////////////////////
+void menuAdmin()
+{
     int optionA;
     do
     {
@@ -66,7 +76,7 @@ void menuAdmin(){
             cout << "Entrando a la seccion de usuarios...";
             MenuCompleteUsuario();
             system("pause");
-            break;    
+            break;
         case 4:
             system("cls");
             cout << "Entrando a la seccion de facturas...";
@@ -74,7 +84,7 @@ void menuAdmin(){
             break;
         case 5:
             cout << "Saliendo....... " << endl;
-            break;    
+            break;
         default:
             cout << "Opcion invalida, selecciona una opcion del menu...";
             system("pause");
@@ -82,39 +92,36 @@ void menuAdmin(){
         }
     } while (optionA != 5);
 }
-
-void menuExterior(){
-    int optionC;
+/////////////////////////////////////////////////////////////////////
+void menuEmpleado()
+{
+    int optionC, respuesta;
     do
     {
         system("cls||clear");
-
         cout << "Seleccione una de las opciones: " << endl;
-        cout << "1. Crear una cuenta nueva" << endl;
-        cout << "2. Iniciar sesion" << endl;
+        cout << "1. Ingresar a productos " << endl;
+        cout << "2. Ingresar a facturas " << endl;
         cout << "3. Salir" << endl;
         cin >> optionC;
-        
+
         switch (optionC)
         {
         case 1:
-            system("cls");
-            cout << "Entrando a la seccion de clientes...";
-            MenuCompleteClient();
+            cout << "Ha entrado a Productos " << endl;
+            cout << "¿Que le gustaria hacer? " << endl;
+            menuP();
             system("pause");
             break;
         case 2:
-            system("cls");
-            cout << "Entrando a la seccion de productos...";
-            MenuCompleteProduct();
-            system("pause");
+            cout << "Ha entrado a Facturas " << endl;
             break;
+            system("pause");
+
         case 3:
-            cout << "Saliendo....... " << endl;
-            break;
+            cout << "Saliendo.................... " << endl;
         default:
-            cout << "Opcion invalida, selecciona una opcion del menu...";
-            system("pause");
+            cout << "Opcion invalida " << endl;
             break;
         }
     } while (optionC != 3);
