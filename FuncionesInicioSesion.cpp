@@ -12,6 +12,7 @@ using namespace std;
 void menuInicial();
 void menuAdmin();
 void menuEmpleados();
+void menuClientes();
 /////////////////////////////////////////////////////////////////////////////////
 void menuInicial()
 {
@@ -125,4 +126,10 @@ void menuEmpleado()
             break;
         }
     } while (optionC != 3);
+}
+
+/////////////////////////////////////////
+
+void menuClientes(){
+    
 }
