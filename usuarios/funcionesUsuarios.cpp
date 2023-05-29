@@ -109,7 +109,7 @@ void inicialUsuario(int pos)
     strcpy(usuarios[pos].password, "");
 }
 
-/* falta desarrollar el caso 1 y el 2
+
 void menuExterior(){
     int optionC;
     do
@@ -125,7 +125,7 @@ void menuExterior(){
         switch (optionC)
         {
         case 1:
-            system("cls);
+            system("cls");
             cout << "Entrando a la seccion de clientes...";
             MenuCompleteClient();
             system("pause");
@@ -146,7 +146,7 @@ void menuExterior(){
         }
     } while (optionC != 3);
 }
-*/
+
 
 int menuU()
 {
