@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "usuarios/funcionesUsuarios.cpp"
-#include "clientes/funcionesClientes.cpp"
-#include "productos/funcionesProductos.cpp"
 #include "funcionesFacturas.cpp"
 
 using namespace std;
@@ -14,36 +12,48 @@ void menuAdmin();
 void menuEmpleados();
 void menuClientes();
 
-bool credencialesAdmin();
-
-//menuInicial
+// menuInicial
 void menuInicial()
 {
     int opcion;
-    cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
-    cout << "Elegir el tipo de cuenta" << endl;
-    cout << "1. Soy Administrador" << endl;
-    cout << "2. Soy Empleado" << endl;
-    cout << "3. Soy Cliente" << endl;
-    cout << "4. Salir" << endl;
-
+    string adminUsername = "Admin";
+    string adminPass = "SOMOS.UCA";
+    string temp1;
+    string temp2;
     do
     {
-        system("cls");
+        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "Elegir el tipo de cuenta" << endl;
+        cout << "1. Soy Administrador" << endl;
+        cout << "2. Soy Empleado" << endl;
+        cout << "3. Soy Cliente" << endl;
+        cout << "4. Salir" << endl;
+        cin >> opcion;
+
         switch (opcion)
         {
         case 1:
             system("cls");
-            bool adminAdmin;
-            adminAdmin = credencialesAdmin();
-            if(adminAdmin == true){
+            cout << "Ingresa el usuario: " << endl;
+            cin >> temp1;
+
+            cout << "Ingresa password: " << endl;
+            cin >> temp2;
+
+            if (temp1 == adminUsername && temp2 == adminPass)
+            {
                 menuAdmin();
+                system("pause");
+            }
+            else
+            {
+                cout << "Credenciales invalidas." << endl;
             }
             system("pause");
             break;
         case 2:
             system("cls");
-            //Desarrollar menu empleados
+            // Desarrollar menu empleados
             system("pause");
             break;
         case 3:
@@ -52,15 +62,19 @@ void menuInicial()
             system("pause");
             break;
         case 4:
+            system("cls");
             cout << "Saliendo....... " << endl;
+            system("pause");
             break;
         default:
+            cout << "Opcion invalida, selecciona una opcion del menu...";
+            system("pause");
             break;
         }
     } while (opcion != 4);
 }
 
-///menuAdmin
+/// menuAdmin
 void menuAdmin()
 {
     int optionA;
@@ -113,10 +127,10 @@ void menuAdmin()
     } while (optionA != 5);
 }
 
-//menuEmpleado
+// menuEmpleado
 void menuEmpleado()
 {
-    int optionC, respuesta;
+    int optionC;
     do
     {
         system("cls");
@@ -134,6 +148,7 @@ void menuEmpleado()
             cout << "¿Que le gustaria hacer? " << endl;
             MenuCompleteClient();
             system("pause");
+            break;
         case 2:
             cout << "Ha entrado a Productos " << endl;
             cout << "¿Que le gustaria hacer? " << endl;
@@ -142,10 +157,11 @@ void menuEmpleado()
             break;
         case 3:
             cout << "Ha entrado a Facturas " << endl;
-            break;
             system("pause");
+            break;
         case 4:
             cout << "Saliendo.................... " << endl;
+            break;
         default:
             cout << "Opcion invalida " << endl;
             break;
@@ -153,8 +169,8 @@ void menuEmpleado()
     } while (optionC != 4);
 }
 
-//menuClientes
-//editar menuclientes solo agregar/editar, no mostrar
+// menuClientes
+// editar menuclientes solo agregar/editar, no mostrar
 
 void menuClientes()
 {
@@ -191,26 +207,5 @@ void menuClientes()
             system("pause");
             break;
         }
-    } while (optionA != 5);
-}
-
-bool credencialesAdmin(){
-    string adminUsername = "Admin";
-    string adminPass = "SOMOS.UCA";
-    bool marcador;
-
-    string temp1;
-    string temp2;
-
-    cout << "Ingresa el usuario: " << endl;
-    cin >> temp1;
-    
-    cout << "Ingresa password: " << endl;
-    cin >> temp2;
-
-    if(temp1 == adminUsername && temp2 == adminPass){
-        marcador = true;
-        return marcador;
-    } else cout << "Datos invalidos, intente de nuevo." << endl;
-
+    } while (optionA != 3);
 }
