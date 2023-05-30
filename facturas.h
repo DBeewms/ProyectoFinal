@@ -4,7 +4,7 @@
 
 typedef struct
 {
-    char numFactura[];
+    char numFactura[10];
 } factura;
 
-factura recibo[];
+factura recibo[1000];
