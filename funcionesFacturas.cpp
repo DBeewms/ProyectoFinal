@@ -35,7 +35,8 @@ void guardarFactura();
 void leerFactura();
 int CalcularRegFactura(FILE *regFactura);
 
-void menuPrincipal();
+void menuF();
+void MenuCompleteFactura();
 
 //agregar datos
 //hacer que # de factura funcione
@@ -82,6 +83,7 @@ int calcularCantidadProducto(int cantidad){
     return cantidad;
 }
 
+/*
 int buscandoProducto(){
     int pos, cantidad;
     char ID[14];
@@ -98,6 +100,7 @@ int buscandoProducto(){
 
     return pos;
 }
+*/
 
 int BuscarFactura(char idF[])
 {
@@ -112,6 +115,7 @@ int BuscarFactura(char idF[])
     return posicion;
 }
 
+/*
 void agregarDatosParaFactura(){
     int position11; 
     int position22;
@@ -136,7 +140,9 @@ void agregarDatosParaFactura(){
     MostrarProducto(position22);
 
 }
+*/
 
+/*
 int menuF()
 {
     int op;
@@ -152,25 +158,27 @@ int menuF()
     cin >> op;
     return op;
 }
+*/
 
-void MenuCompleteClient()
+/*
+void MenuCompleteFactura()
 {
-    int op, pos, resp;
+    int op, pos;
     char IDF[14];
     factura facturas;
-    leerCliente();
+    leerFactura();
 
     do
     {
         system("cls");
 
-        op = menuC();
+        op = menuF();
         switch (op)
         {
         case 1:
             system("cls");
-            agregarDatosParaFactura();
-            agregarFactura(facturas);
+            //agregarDatosParaFactura();
+            //agregarFactura(facturas);
             system("pause");
             break;
         case 2:
@@ -198,6 +206,7 @@ void MenuCompleteClient()
     } while (op != 6);
     guardarFactura();
 }
+*/
 
 void guardarFactura(){
     baseDatosFactura = fopen("datosfactura.bin", "wb");
