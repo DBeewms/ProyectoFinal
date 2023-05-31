@@ -9,6 +9,7 @@
 using namespace std;
 
 int lastFactura = 0;
+int lastDetFac = 0;
 
 void encabezadoFactura();
 void pieDeFactura();
@@ -35,35 +36,59 @@ void guardarFactura();
 void leerFactura();
 int CalcularRegFactura(FILE *regFactura);
 
-void menuF();
+int menuF();
 void MenuCompleteFactura();
 
-//agregar datos
-//hacer que # de factura funcione
-void encabezadoFactura(){
+// agregar datos
+// hacer que # de factura funcione
+void encabezadoFactura()
+{
     cout << "===================MCSerigraph===================" << endl;
     cout << "Direccion:" << endl;
     cout << "Telefono:" << endl;
     cout << "Factura #" << endl;
+    cout << "Fecha" << endl;
     cout << "=================================================" << endl;
+    cout << "Cliente" << endl;
 }
 
-void pieDeFactura(){
+//NO aplicar IVA
+void imprimirDetalle(){
+    float total = 0, monto = 0;
+    for(int i = 0; i < lastDetFac; i++){
+        total = detalles[i].cantidad * detalles[i].precioP;
+        monto += total;
+        printf("%s %d %.2f %.2f\n", detalles[i].nomProducto, detalles[i].cantidad, detalles[i].precioP, total);
+    }
+    printf("Monto a pagar: %.2f\n", monto);
+}
+
+void pieDeFactura()
+{
     cout << "=================================================" << endl;
     cout << "Gracias por su compra";
     cout << "=================================================" << endl;
 }
 
-void agregarFactura(factura facturas){
+void agregarFactura(factura facturas)
+{
     recibo[lastFactura] = facturas;
     lastFactura++;
 }
 
-factura getFacturas(int pos){
+void agregarDetFac(detFac detFactura){
+    detalles[lastDetFac] = detFactura;
+    lastDetFac++;
+}
+
+
+factura getFacturas(int pos)
+{
     return recibo[pos];
 }
 
-int buscandoCliente(int position11){
+int buscandoCliente(int position11)
+{
     leerCliente();
 
     char IDpos1[14];
@@ -76,8 +101,9 @@ int buscandoCliente(int position11){
     return position11;
 }
 
-int calcularCantidadProducto(int cantidad){
-    
+int calcularCantidadProducto(int cantidad)
+{
+
     cout << "¿Cuanta cantidad de este producto quieres agregar?" << endl;
     cin >> cantidad;
     return cantidad;
@@ -90,8 +116,8 @@ int buscandoProducto(){
     producto productos;
 
     leerProducto();
-    
-    
+
+
     cout << " Escribe el ID del producto a agregar: " << endl;
     scanf(" %[^\n]", productos.IDP);
     pos = BuscarProducto(ID);
@@ -117,7 +143,7 @@ int BuscarFactura(char idF[])
 
 /*
 void agregarDatosParaFactura(){
-    int position11; 
+    int position11;
     int position22;
     int cantidadProductos;
 
@@ -132,8 +158,8 @@ void agregarDatosParaFactura(){
         calcularCantidadProducto(cantidadProductos);
         cantidadProductos =  calcularCantidadProducto(cantidadProductos);
     }
-    
-    
+
+
 
     //mostrar
     MostrarCliente(position11);
@@ -142,7 +168,7 @@ void agregarDatosParaFactura(){
 }
 */
 
-/*
+
 int menuF()
 {
     int op;
@@ -158,15 +184,14 @@ int menuF()
     cin >> op;
     return op;
 }
-*/
 
-/*
+
 void MenuCompleteFactura()
 {
-    int op, pos;
+    int op, pos, cantidad;
     char IDF[14];
     factura facturas;
-    leerFactura();
+    //leerFactura();
 
     do
     {
@@ -177,8 +202,22 @@ void MenuCompleteFactura()
         {
         case 1:
             system("cls");
+            facturas.numFactura=lastFactura+1;
+            cout << "Ingresa la fecha:";
+            scanf("%s", facturas.fecha);
+            cout << "Ingresa el cliente:";
+            scanf("%[^\n]", facturas.nombreCliente);
+            cout << "Ingresa una observacion:";
+            scanf("%[^\n]", facturas.observacion);
+            cout << "¿Cuantos productos va a facturar?: ";
+            cin >> cantidad;
+            for(int i = 0; i < cantidad; i++){
+                //llenar detalles
+            }
+
             //agregarDatosParaFactura();
             //agregarFactura(facturas);
+            
             system("pause");
             break;
         case 2:
@@ -206,15 +245,17 @@ void MenuCompleteFactura()
     } while (op != 6);
     guardarFactura();
 }
-*/
 
-void guardarFactura(){
+
+void guardarFactura()
+{
     baseDatosFactura = fopen("datosfactura.bin", "wb");
     fwrite(recibo, sizeof(factura), lastFactura, baseDatosFactura);
     fclose(baseDatosFactura);
 }
 
-void leerFactura(){
+void leerFactura()
+{
     baseDatosFactura = fopen("datosfactura.bin", "rb");
     if (baseDatosFactura == NULL)
     {
@@ -226,7 +267,8 @@ void leerFactura(){
     fclose(baseDatosFactura);
 }
 
-int CalcularRegFactura(FILE *regFactura){
+int CalcularRegFactura(FILE *regFactura)
+{
     int tam_archivo, num_facturas;
 
     fseek(regFactura, 0, SEEK_END);
@@ -234,6 +276,6 @@ int CalcularRegFactura(FILE *regFactura){
     rewind(regFactura);
 
     num_facturas = tam_archivo / sizeof(factura);
-    
+
     return num_facturas;
 }
