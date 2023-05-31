@@ -39,7 +39,8 @@ void MostrarProducto(int pos)
     cout << "ID: " << productos[pos].IDP << endl;
     cout << "NOMBRE DEL PRODUCTO: " << productos[pos].nombreP << endl;
     cout << "DESCRIPCION: " << productos[pos].descripcion << endl;
-    cout << "PRECIO: " << productos[pos].precio << endl;
+    printf("PRECIO: %.2f\n", productos[pos].precio);
+    //cout << "PRECIO: " << productos[pos].precio << endl;
 }
 
 producto getProducto(int pos)
@@ -49,12 +50,14 @@ producto getProducto(int pos)
 
 int BuscarProducto(char id[])
 {
-    int posicion = 0;
+    int posicion = -1;
     for (int i = 0; i < lastRegP; i++)
     {
+        //printf("%s es igual %s\n", id, productos[i].IDP);
         if (strcmp(id, productos[i].IDP) == 0)
         {
             posicion = i;
+            break;
         }
     }
     return posicion;
@@ -65,7 +68,7 @@ void MostrarProductos()
     system("cls||clear");
     if (lastRegP == 0)
     {
-        cout << "No hay clientes registrados " << endl;
+        cout << "No hay registro " << endl;
         return;
     }
     for (int i = 0; i < lastRegP; i++)
@@ -101,7 +104,8 @@ void ProductoInicial(int pos)
     strcpy(productos[pos].IDP, "");
     strcpy(productos[pos].nombreP, "");
     strcpy(productos[pos].descripcion, "");
-    strcpy(productos[pos].precio, "");
+    productos[pos].precio=0;
+    //strcpy(productos[pos].precio, "");
 }
 
 int menuP()
@@ -110,7 +114,7 @@ int menuP()
 
     cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
     cout << "Seleccione una de las opciones " << endl;
-    cout << "Ver la cantidad de clientes registrados " << lastRegP << endl;
+    cout << "Cantidad de productos almacenados " << lastRegP << endl;
     cout << "1. Agregar producto " << endl;
     cout << "2. Editar producto " << endl;
     cout << "3. Eliminar producto " << endl;
@@ -145,7 +149,7 @@ void MenuCompleteProduct()
             scanf(" %[^\n]", productos.IDP);
             scanf(" %[^\n]", productos.nombreP);
             scanf(" %[^\n]", productos.descripcion);
-            scanf(" %[^\n]", productos.precio);
+            scanf("%f", &productos.precio);
             agregarProducto(productos);
             system("pause");
 
@@ -164,7 +168,7 @@ void MenuCompleteProduct()
             cout << " Descripcion: " << endl;
             scanf(" %[^\n]", productos.descripcion);
             cout << " Precio" << endl;
-            scanf(" %[^\n]", productos.precio);
+            scanf("%f", &productos.precio);
             //editarProducto(productos, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
@@ -175,7 +179,7 @@ void MenuCompleteProduct()
                 cout << " No hay nada que eliminar " << endl;
                 break;
             }
-            cout << "Escribe el ID del cliente: " << endl;
+            cout << "Escribe el ID del producto: " << endl;
             cin >> ID;
             pos = BuscarProducto(ID);
             productos = getProducto(pos);
@@ -194,11 +198,13 @@ void MenuCompleteProduct()
             system("pause");
             break;
         case 4:
+            //copiar estrucutura en demas funciones, clientes y usuarios
             system("cls");
             cout << " Escribe el ID del producto a buscar: " << endl;
-            scanf(" %[^\n]", productos.IDP);
+            scanf(" %[^\n]", ID);
             pos = BuscarProducto(ID);
-            MostrarProducto(pos);
+            if(pos == -1) cout << "Registro no existe\n";
+            else MostrarProducto(pos);
             system("pause");
             break;
         case 5:
