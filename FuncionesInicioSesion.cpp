@@ -114,6 +114,7 @@ void menuAdmin()
         case 4:
             system("cls");
             cout << "Entrando a la seccion de facturas...";
+            MenuCompleteFactura();
             system("pause");
             break;
         case 5:
