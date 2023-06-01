@@ -11,10 +11,11 @@ using namespace std;
 int lastFactura = 0;
 int lastDetFac = 0;
 
-void encabezadoFactura();
+void encabezadoFactura(int i);
 void pieDeFactura();
 
 void agregarFactura(factura facturas);
+void imprimirDetalle(int numFact);
 
 factura getFacturas(int pos);
 int BuscarFactura(char idF[]);
@@ -24,13 +25,13 @@ int buscandoProducto();
 int calcularCantidadProducto(int cantidad);
 
 void agregarDatosParaFactura();
-
+/*
 void MostrarFactura(int pos);
 void MostrarFacturas();
 void editarFactura();
 void ExisteFactura();
 void EliminarFacturas();
-
+*/
 FILE *baseDatosFactura;
 void guardarFactura();
 void leerFactura();
@@ -41,26 +42,37 @@ void MenuCompleteFactura();
 
 // agregar datos
 // hacer que # de factura funcione
-void encabezadoFactura()
+void encabezadoFactura(int i)
+
 {
     cout << "===================MCSerigraph===================" << endl;
-    cout << "Direccion:" << endl;
-    cout << "Telefono:" << endl;
-    cout << "Factura #" << endl;
-    cout << "Fecha" << endl;
+    cout << "Direccion: Masaya" << endl;
+    cout << "Telefono: 25613023" << endl;
+    cout << "Factura #: " << recibo[i].numFactura << endl;
+    cout << "Fecha: " << recibo[i].fecha << endl;
     cout << "=================================================" << endl;
-    cout << "Cliente" << endl;
+    cout << "Cliente: " << recibo[i].nombreCliente << endl;
+    imprimirDetalle(recibo[i].numFactura);
 }
 
-//NO aplicar IVA
-void imprimirDetalle(){
+// NO aplicar IVA
+void imprimirDetalle(int numFact)
+
+{
     float total = 0, monto = 0;
-    for(int i = 0; i < lastDetFac; i++){
-        total = detalles[i].cantidad * detalles[i].precioP;
-        monto += total;
-        printf("%s %d %.2f %.2f\n", detalles[i].nomProducto, detalles[i].cantidad, detalles[i].precioP, total);
+    for (int i = 0; i < lastDetFac; i++)
+    {
+        printf("%d=%d\n", numFact, detalles[i].numFac);
+        if (numFact == detalles[i].numFac)
+        {
+
+            total = detalles[i].cantidad * detalles[i].precioP;
+            monto += total;
+            printf("%s %d %.2f %.2f\n", detalles[i].nomProducto, detalles[i].cantidad, detalles[i].precioP, total);
+        }
     }
     printf("Monto a pagar: %.2f\n", monto);
+    pieDeFactura();
 }
 
 void pieDeFactura()
@@ -69,6 +81,7 @@ void pieDeFactura()
     cout << "Gracias por su compra";
     cout << "=================================================" << endl;
 }
+void imprimirFactura();
 
 void agregarFactura(factura facturas)
 {
@@ -76,11 +89,11 @@ void agregarFactura(factura facturas)
     lastFactura++;
 }
 
-void agregarDetFac(detFac detFactura){
+void agregarDetFac(detFac detFactura)
+{
     detalles[lastDetFac] = detFactura;
     lastDetFac++;
 }
-
 
 factura getFacturas(int pos)
 {
@@ -128,12 +141,12 @@ int buscandoProducto(){
 }
 */
 
-int BuscarFactura(char idF[])
+int BuscarFactura(int idF)
 {
     int posicion = 0;
     for (int i = 0; i < lastFactura; i++)
     {
-        if (strcmp(idF, recibo[i].numFactura) == 0)
+        if (idF == recibo[i].numFactura)
         {
             posicion = i;
         }
@@ -168,7 +181,6 @@ void agregarDatosParaFactura(){
 }
 */
 
-
 int menuF()
 {
     int op;
@@ -185,13 +197,14 @@ int menuF()
     return op;
 }
 
-
 void MenuCompleteFactura()
 {
-    int op, pos, cantidad;
+    int op, pos, cantidad, posProd;
     char IDF[14];
+    char NProduct[10];
     factura facturas;
-    //leerFactura();
+    producto prod;
+    // leerFactura();
 
     do
     {
@@ -202,28 +215,43 @@ void MenuCompleteFactura()
         {
         case 1:
             system("cls");
-            facturas.numFactura=lastFactura+1;
+            facturas.numFactura = lastFactura + 1;
             cout << "Ingresa la fecha:";
-            scanf("%s", facturas.fecha);
+            scanf(" %[^\n]", facturas.fecha);
             cout << "Ingresa el cliente:";
-            scanf("%[^\n]", facturas.nombreCliente);
+            scanf(" %[^\n]", facturas.nombreCliente);
             cout << "Ingresa una observacion:";
-            scanf("%[^\n]", facturas.observacion);
+            scanf(" %[^\n]", facturas.observacion);
+            agregarFactura(facturas);
             cout << "¿Cuantos productos va a facturar?: ";
             cin >> cantidad;
-            for(int i = 0; i < cantidad; i++){
-                //llenar detalles
+            for (int i = 0; i < cantidad; i++)
+            {
+                // llenar detalles
+                detalles[lastDetFac].idDetalle = lastDetFac + 1;
+                detalles[lastDetFac].numFac = facturas.numFactura;
+                cout << "Ingrese el codigo del producto: ";
+                scanf(" %[^\n]", NProduct);
+                posProd = BuscarProducto(NProduct);
+                cout << "Encontre este registro " << posProd << endl;
+                prod = getProducto(posProd);
+                printf("producto: %s\n precio: %.2f\n", prod.nombreP, prod.precio);
+                strcpy(detalles[lastDetFac].nomProducto, prod.nombreP);
+                detalles[lastDetFac].precioP = prod.precio;
+                cout << "Ingrese la cantidad de productos: ";
+                cin >> detalles[lastFactura].cantidad;
             }
+            encabezadoFactura(facturas.numFactura-1);
+            // agregarDatosParaFactura();
+            // agregarFactura(facturas);
 
-            //agregarDatosParaFactura();
-            //agregarFactura(facturas);
-            
             system("pause");
             break;
+            /*
         case 2:
             system("cls");
             cout << " Escribe el numero de factura a buscar: " << endl;
-            scanf(" %[^\n]", facturas.numFactura);
+            scanf(" %d", &facturas.numFactura);
             pos = BuscarFactura(IDF);
             MostrarFactura(pos);
             system("pause");
@@ -235,7 +263,8 @@ void MenuCompleteFactura()
             break;
         case 4:
             cout << "Saliendo....... " << endl;
-            break;
+
+            break;*/
         default:
             system("cls");
             cout << " Opcion no valida " << endl;
@@ -245,7 +274,6 @@ void MenuCompleteFactura()
     } while (op != 6);
     guardarFactura();
 }
-
 
 void guardarFactura()
 {

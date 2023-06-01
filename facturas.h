@@ -5,7 +5,7 @@
 typedef struct
 {
     int numFactura;
-    char fecha[10];
+    char fecha[12];
     char nombreCliente[60];
     char observacion[100];
 } factura;
