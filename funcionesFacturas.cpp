@@ -60,9 +60,11 @@ void imprimirDetalle(int numFact)
 
 {
     float total = 0, monto = 0;
+    printf("PRODUCTO \t | CANTIDAD \t | PRECIO \t | TOTAL\n");
+
     for (int i = 0; i < lastDetFac; i++)
     {
-        printf("%d=%d\n", numFact, detalles[i].numFac);
+        //printf("%d=%d\n", numFact, detalles[i].numFac);
         if (numFact == detalles[i].numFac)
         {
 
@@ -200,7 +202,7 @@ int menuF()
 void MenuCompleteFactura()
 {
     int op, pos, cantidad, posProd;
-    char IDF[14];
+    //char IDF[14];
     char NProduct[10];
     factura facturas;
     producto prod;
@@ -233,13 +235,21 @@ void MenuCompleteFactura()
                 cout << "Ingrese el codigo del producto: ";
                 scanf(" %[^\n]", NProduct);
                 posProd = BuscarProducto(NProduct);
-                cout << "Encontre este registro " << posProd << endl;
-                prod = getProducto(posProd);
-                printf("producto: %s\n precio: %.2f\n", prod.nombreP, prod.precio);
-                strcpy(detalles[lastDetFac].nomProducto, prod.nombreP);
-                detalles[lastDetFac].precioP = prod.precio;
-                cout << "Ingrese la cantidad de productos: ";
-                cin >> detalles[lastFactura].cantidad;
+                if (posProd == -1)
+                {
+                    cout << "Producto no existe...\n";
+                    break;
+                }
+                else
+                {
+                    prod = getProducto(posProd);
+                    printf("producto: %s\n precio: %.2f\n", prod.nombreP, prod.precio);
+                    strcpy(detalles[lastDetFac].nomProducto, prod.nombreP);
+                    detalles[lastDetFac].precioP = prod.precio;
+                    cout << "Ingrese la cantidad de productos: ";
+                    cin >> detalles[lastFactura].cantidad;
+                    lastDetFac++;
+                }
             }
             encabezadoFactura(facturas.numFactura-1);
             // agregarDatosParaFactura();
