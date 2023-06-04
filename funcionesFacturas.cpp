@@ -4,6 +4,7 @@
 #include <string.h>
 #include "clientes/funcionesClientes.cpp"
 #include "productos/funcionesProductos.cpp"
+#include "usuarios/funcionesUsuarios.cpp"
 #include "facturas.h"
 
 using namespace std;

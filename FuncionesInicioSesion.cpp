@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "usuarios/funcionesUsuarios.cpp"
 #include "funcionesFacturas.cpp"
 
 using namespace std;
