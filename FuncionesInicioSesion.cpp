@@ -273,7 +273,7 @@ int menuForCliente()
 {
     int op;
 
-    cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
+    cout << "-----------------Bienvenido al menu de clientes de MCSerigraph-------------- " << endl;
     cout << "Seleccione una de las opciones " << endl;
     cout << "1. Agregar cliente " << endl;
     cout << "2. Mostrar productos " << endl;
