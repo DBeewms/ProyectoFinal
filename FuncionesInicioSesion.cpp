@@ -86,7 +86,7 @@ void menuAdmin()
     {
         system("cls||clear");
 
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "-----------------Bienvenido al menu de Administrador de MCSerigraph--------------" << endl;
         cout << "Seleccione una de las opciones: " << endl;
         cout << "1. Seccion de clientes" << endl;
         cout << "2. Seccion de productos" << endl;
