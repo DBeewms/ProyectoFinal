@@ -26,7 +26,7 @@ void menuInicial()
     string temp2;
     do
     {
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "-----------------Bienvenido a MCSerigraph--------------" << endl;
         cout << "Elegir el tipo de cuenta" << endl;
         cout << "1. Soy Administrador" << endl;
         cout << "2. Soy Empleado" << endl;
