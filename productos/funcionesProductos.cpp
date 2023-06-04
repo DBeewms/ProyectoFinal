@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "AuxiliarP.h"
 #include "productos.h"
 
 using namespace std;

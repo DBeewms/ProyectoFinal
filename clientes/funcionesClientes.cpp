@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "AuxiliarC.h"
 #include "clientes.h"
 
 using namespace std;

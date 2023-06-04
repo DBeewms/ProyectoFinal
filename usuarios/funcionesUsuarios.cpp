@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "AuxiliarU.h"
 #include "usuarios.h"
 
 using namespace std;
@@ -26,23 +27,20 @@ void guardarUsuario();
 void leerUsuario();
 int CalcularRegU(FILE *archivo);
 
-
 /*Se definen las funciones*/
 
-void agregarUsuario(usuario Usuarios)
+void agregarUsuario(usuario users)
 {
-    usuarios[lastRegU] = Usuarios;
+    usuarios[lastRegU] = users;
     lastRegU++;
-}   
-
+}
 
 void mostrarUsuario(int pos)
 {
     cout << "ID:" << usuarios[pos].IDU << endl;
     cout << "NOMBRE DEL USUARIO:" << usuarios[pos].nombreU << endl;
     cout << "EMAIL:" << usuarios[pos].email << endl;
-    cout << "CONTRASEÑA:" <<usuarios[pos].password << endl;
-
+    cout << "CONTRASEÑA:" << usuarios[pos].password << endl;
 }
 
 usuario getUsuarios(int pos)
@@ -53,7 +51,7 @@ usuario getUsuarios(int pos)
 int buscarUsuario(char id[])
 {
     int posicion = -1;
-    for(int i = 0; i < lastRegU; i++)
+    for (int i = 0; i < lastRegU; i++)
     {
         if (strcmp(id, usuarios[i].IDU) == 0)
         {
@@ -73,10 +71,10 @@ void mostrarUsuarios()
         return;
     }
 
-    for(int i = 0; i < lastRegU; i++)
+    for (int i = 0; i < lastRegU; i++)
     {
-       cout<< "=========================\n";
-       mostrarUsuario(i); 
+        cout << "=========================\n";
+        mostrarUsuario(i);
     }
     cout << "Ultimo usuario...." << endl;
 }
@@ -104,8 +102,6 @@ void inicialUsuario(int pos)
     strcpy(usuarios[pos].password, "");
 }
 
-
-
 int menuU()
 {
     int op;
@@ -128,7 +124,7 @@ void MenuCompleteUsuario()
 {
     int op, pos, resp;
     char ID[14];
-   usuario usuarios;
+    usuario usuarios;
     leerUsuario();
 
     do
@@ -143,7 +139,7 @@ void MenuCompleteUsuario()
             cout << " ID: " << endl;
             cout << " Nombre: " << endl;
             cout << " Email: " << endl;
-            cout << " Password:" <<endl;
+            cout << " Password:" << endl;
             scanf(" %[^\n]", usuarios.IDU);
             scanf(" %[^\n]", usuarios.nombreU);
             scanf(" %[^\n]", usuarios.email);
@@ -168,7 +164,7 @@ void MenuCompleteUsuario()
             scanf(" %[^\n]", usuarios.email);
             cout << " Contraseña" << endl;
             scanf(" %[^\n]", usuarios.password);
-            //editarUsuario(usuarios, pos);
+            // editarUsuario(usuarios, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -201,8 +197,10 @@ void MenuCompleteUsuario()
             cout << " Escribe el ID del usuario a buscar: " << endl;
             scanf(" %[^\n]", usuarios.IDU);
             pos = buscarUsuario(ID);
-            if(pos == -1) cout << "Registro no existe\n";
-            else mostrarUsuario(pos);
+            if (pos == -1)
+                cout << "Registro no existe\n";
+            else
+                mostrarUsuario(pos);
             system("pause");
             break;
         case 5:
@@ -253,6 +251,6 @@ int CalcularRegU(FILE *archivo)
     rewind(archivo);
 
     num_usuarios = tam_archivo / sizeof(usuarios);
-    
+
     return num_usuarios;
 }
