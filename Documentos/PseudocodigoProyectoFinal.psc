@@ -290,7 +290,96 @@ SubProceso imprimirDetalle(cantidad_facturas, cliente, fecha, cantidadTemporal, 
 	pieDeFactura();
 FinSubProceso
 
+//secciones
+SubProceso menuClientes(nombres, apellidos, ids, cantidad_clientes, id_cliente, i)
+	Definir opcion Como Entero;
+	Repetir
+		Escribir "===============Bienvenido a MCSerigraph===============";
+		Escribir "Seccion de clientes...";
+		Escribir "Elija una opción:";
+		Escribir "1. Agregar cliente";
+		Escribir "2. Mostrar clientes";
+		Escribir "3. Editar cliente";
+		Escribir "4. Eliminar cliente";
+		Escribir "5. Salir";
+		Leer opcion;
+		Segun opcion Hacer
+			1:
+				agregarClientes(nombres, apellidos, ids, cantidad_clientes);
+				cantidad_clientes <- cantidad_clientes + 1;
+			2:
+				mostrarClientes(nombres, apellidos, ids, cantidad_clientes, i);
+			3: 
+				editarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente);
+			4:
+				eliminarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente);
+			5:
+				Escribir "Saliendo...";
+			De Otro Modo:
+				Escribir "Opcion invalida. Intente de nuevo.";
+		FinSegun
+	Hasta Que opcion == 5;
+FinSubProceso
 
+SubProceso menuProductos(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto, i)
+	Definir opcion Como Entero;
+	Repetir
+		Escribir "===============Bienvenido a MCSerigraph===============";
+		Escribir "Seccion de productos...";
+		Escribir "Elija una opción:";
+		Escribir "1. Agregar producto";
+		Escribir "2. Mostrar productos";
+		Escribir "3. Editar producto";
+		Escribir "4. Eliminar producto";
+		Escribir "5. Salir";
+		Leer opcion;
+		Segun opcion Hacer
+			1:
+				agregarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos);
+				cantidad_productos <- cantidad_productos + 1;
+			2:
+				mostrarProductos(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, i);
+			3:
+				editarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
+			4:
+				eliminarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
+			5:
+				Escribir "Saliendo...";
+			De Otro Modo:
+				Escribir "Opcion invalida. Intente de nuevo.";
+		FinSegun
+	Hasta Que opcion == 5;
+FinSubProceso
+
+SubProceso menuUsuarios(usuario, idUsuario, password, cantidad_usuarios, id_usuario, i)
+	Definir opcion Como Entero;
+	Repetir
+		Escribir "===============Bienvenido a MCSerigraph===============";
+		Escribir "Seccion de usuarios...";
+		Escribir "Elija una opción:";
+		Escribir "1. Agregar usuario";
+		Escribir "2. Mostrar usuarios";
+		Escribir "3. Editar usuario";
+		Escribir "4. Eliminar usuario";
+		Escribir "5. Salir";
+		Leer opcion;
+		Segun opcion Hacer
+			1:
+				agregarUsuario(usuario, idUsuario, password, cantidad_usuarios);
+				cantidad_usuarios<-cantidad_usuarios+1;
+			2:
+				mostrarUsuarios(usuario, idUsuario, password, cantidad_usuarios, i);
+			3:
+				editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
+			4:
+				eliminarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
+			5:
+				Escribir "Saliendo...";
+			De Otro Modo:
+				Escribir "Opcion invalida. Intente de nuevo.";
+		FinSegun
+	Hasta Que opcion == 5;
+FinSubProceso
 
 //pricipal
 
@@ -336,64 +425,26 @@ Proceso proyectoFinal
 		Escribir " ";
 		Escribir "===============Bienvenido a MCSerigraph===============";
         Escribir "Elija una opción:";
-		Escribir "Clientes...";
-        Escribir "1. Agregar cliente";
-        Escribir "2. Mostrar clientes";
-		Escribir "3. Editar cliente";
-		Escribir "4. Eliminar cliente";
-		Escribir "Productos...";
-        Escribir "5. Agregar productos";
-		Escribir "6. Mostrar productos";
-		Escribir "7. Editar productos";
-		Escribir "8. Eliminar productos";
-		Escribir "Usuarios...";
-		Escribir "9. Agregar usuarios";
-		Escribir "10. Mostrar usuarios";
-		Escribir "11. Editar usuarios";
-		Escribir "12. Eliminar usuarios";
-		Escribir "Facturas...";
-		Escribir "13. Generar factura...";
-		Escribir "Salir del programa...";
-		Escribir "20. Salir.";
+		Escribir "1. Seccion de clientes";
+        Escribir "2. Seccion de productos";
+		Escribir "3. Seccion de usuarios";
+		Escribir "4. Generar factura";
+		Escribir "5. Salir del programa";
         Leer opcion;
 	
 		Segun opcion Hacer
 			1:
-				agregarClientes(nombres, apellidos, ids, cantidad_clientes);
-				cantidad_clientes <- cantidad_clientes + 1;
+				menuClientes(nombres, apellidos, ids, cantidad_clientes, id_cliente, i);
 			2:
-				mostrarClientes(nombres, apellidos, ids, cantidad_clientes, i);
-				
+				menuProductos(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto, i);
 			3: 
-				editarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente);
+				menuUsuarios(usuario, idUsuario, password, cantidad_usuarios, id_usuario, i);
 			4:
-				eliminarCliente(nombres, apellidos, ids, cantidad_clientes, id_cliente);
-			5:
-				agregarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos);
-				cantidad_productos <- cantidad_productos + 1;
-			6:
-				mostrarProductos(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, i);
-			7:
-				editarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
-			8:
-				eliminarProducto(producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
-			9:
-				agregarUsuario(usuario, idUsuario, password, cantidad_usuarios);
-				cantidad_usuarios<-cantidad_usuarios+1;
-			10:
-				mostrarUsuarios(usuario, idUsuario, password, cantidad_usuarios, i);
-			11:
-				editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
-			12:
-				eliminarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
-			13:
 				imprimirDetalle(cantidad_facturas, cliente, fecha, cantidadTemporal, precioTemporal, montoTemporal, totalTemporal, producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
-			20:	Escribir "Saliendo del programa...";
+			5:
+				Escribir "Saliendo del programa...";
 			De Otro Modo:
 				Escribir "Opción inválida. Inténtalo de nuevo.";
 		FinSegun
 	Hasta Que opcion == 20;
-	
-	
 FinProceso
-
