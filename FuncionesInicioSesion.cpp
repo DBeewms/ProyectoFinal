@@ -25,7 +25,7 @@ void menuInicial()
     string temp2;
     do
     {
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "-----------------Bienvenido a MCSerigraph--------------" << endl;
         cout << "Elegir el tipo de cuenta" << endl;
         cout << "1. Soy Administrador" << endl;
         cout << "2. Soy Empleado" << endl;
@@ -85,7 +85,7 @@ void menuAdmin()
     {
         system("cls||clear");
 
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "-----------------Bienvenido al menu de Administrador de MCSerigraph--------------" << endl;
         cout << "Seleccione una de las opciones: " << endl;
         cout << "1. Seccion de clientes" << endl;
         cout << "2. Seccion de productos" << endl;
@@ -138,7 +138,7 @@ void menuEmpleado()
     do
     {
         system("cls");
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "-----------------Bienvenido al menu de empleados de MCSerigraph--------------" << endl;
         cout << "Seleccione una de las opciones: " << endl;
         cout << "1. Ingresar a clientes " << endl;
         cout << "2. Ingresar a productos " << endl;
@@ -272,7 +272,7 @@ int menuForCliente()
 {
     int op;
 
-    cout << "-----------------Bienvenido al menu de MCSerigraph-------------- " << endl;
+    cout << "-----------------Bienvenido al menu de clientes de MCSerigraph-------------- " << endl;
     cout << "Seleccione una de las opciones " << endl;
     cout << "1. Agregar cliente " << endl;
     cout << "2. Mostrar productos " << endl;
