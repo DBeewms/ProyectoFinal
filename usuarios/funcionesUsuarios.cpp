@@ -52,12 +52,13 @@ usuario getUsuarios(int pos)
 
 int buscarUsuario(char id[])
 {
-    int posicion = 0;
+    int posicion = -1;
     for(int i = 0; i < lastRegU; i++)
     {
         if (strcmp(id, usuarios[i].IDU) == 0)
         {
             posicion = i;
+            break;
         }
     }
     return posicion;
@@ -65,7 +66,7 @@ int buscarUsuario(char id[])
 
 void mostrarUsuarios()
 {
-    system("cls||clear");
+    system("cls");
     if (lastRegU == 0)
     {
         cout << "No hay usuarios registrados" << endl;
@@ -79,12 +80,6 @@ void mostrarUsuarios()
     }
     cout << "Ultimo usuario...." << endl;
 }
-
-
-/*void editarUsuario(usuario Usuarios, int pos)
-{
-    usuarios[pos];
-}*/
 
 void borrarUsuario(int pos)
 {
@@ -138,13 +133,13 @@ void MenuCompleteUsuario()
 
     do
     {
-        system("cls||clear");
+        system("cls");
 
         op = menuU();
         switch (op)
         {
         case 1:
-            system("cls||clear");
+            system("cls");
             cout << " ID: " << endl;
             cout << " Nombre: " << endl;
             cout << " Email: " << endl;
@@ -159,7 +154,7 @@ void MenuCompleteUsuario()
 
             break;
         case 2:
-            system("cls||clear");
+            system("cls");
             cout << "Escribe el ID a buscar: " << endl;
             scanf(" %[^\n]", usuarios.IDU);
             pos = buscarUsuario(ID);
@@ -187,7 +182,7 @@ void MenuCompleteUsuario()
             cin >> ID;
             pos = buscarUsuario(ID);
             usuarios = getUsuarios(pos);
-            cout << "¿Realmente quiere solicitar elimimar a este usuarios " << usuarios.nombreU << "" << usuarios.IDU << " ? " << endl;
+            cout << "Realmente quiere solicitar elimimar a este usuarios " << usuarios.nombreU << " " << usuarios.IDU << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
             cin >> resp;
             if (resp == 1)
@@ -202,15 +197,16 @@ void MenuCompleteUsuario()
             system("pause");
             break;
         case 4:
-            system("cls||clear");
+            system("cls");
             cout << " Escribe el ID del usuario a buscar: " << endl;
             scanf(" %[^\n]", usuarios.IDU);
             pos = buscarUsuario(ID);
-            mostrarUsuario(pos);
+            if(pos == -1) cout << "Registro no existe\n";
+            else mostrarUsuario(pos);
             system("pause");
             break;
         case 5:
-            system("cls||clear");
+            system("cls");
             mostrarUsuarios();
             system("pause");
             break;
@@ -219,7 +215,7 @@ void MenuCompleteUsuario()
             break;
 
         default:
-            system("clear||cls");
+            system("cls");
             cout << " Opcion no valida " << endl;
             system("pause");
             break;
@@ -230,14 +226,14 @@ void MenuCompleteUsuario()
 
 void guardarUsuario()
 {
-    registroUsuario = fopen("datos.bin", "wb");
+    registroUsuario = fopen("datosUsuario.bin", "wb");
     fwrite(usuarios, sizeof(usuario), lastRegU, registroUsuario);
     fclose(registroUsuario);
 }
 
 void leerUsuario()
 {
-    registroUsuario = fopen("datos.bin", "rb");
+    registroUsuario = fopen("datosUsuario.bin", "rb");
     if (registroUsuario == NULL)
     {
         return;

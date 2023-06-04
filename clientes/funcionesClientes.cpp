@@ -8,8 +8,6 @@ using namespace std;
 
 int lastReg = 0;
 
-// se agregan fuciones
-
 // Create
 void agregarCliente(cliente Cliente);
 // Read
@@ -53,12 +51,13 @@ cliente getClientes(int pos)
 
 int BuscarCliente(char id[])
 {
-    int posicion = 0;
+    int posicion = -1;
     for (int i = 0; i < lastReg; i++)
     {
         if (strcmp(id, Clien[i].ID) == 0)
         {
             posicion = i;
+            break;
         }
     }
     return posicion;
@@ -66,7 +65,7 @@ int BuscarCliente(char id[])
 
 void MostrarClientes()
 {
-    system("cls||clear");
+    system("cls");
     if (lastReg == 0)
     {
         cout << "No hay clientes registrados " << endl;
@@ -79,11 +78,6 @@ void MostrarClientes()
     }
     cout << "Ultimo cliente..... " << endl;
 }
-
-/*void editarCliente(cliente Clientes, int pos)
-{
-    Clien[pos];
-}*/
 
 void borrarCliente(int pos)
 {
@@ -178,7 +172,7 @@ void MenuCompleteClient()
             cin >> ID;
             pos = BuscarCliente(ID);
             Clientes = getClientes(pos);
-            cout << "¿Realmente quiere solicitar elimimar a este cliente: " << Clientes.nombre << "" << Clientes.apellido << " ? " << endl;
+            cout << "Realmente quiere solicitar elimimar a este cliente: " << Clientes.nombre << " " << Clientes.apellido << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
             cin >> resp;
             if (resp == 1)
@@ -197,7 +191,8 @@ void MenuCompleteClient()
             cout << " Escribe el ID a buscar: " << endl;
             scanf(" %[^\n]", Clientes.ID);
             pos = BuscarCliente(ID);
-            MostrarCliente(pos);
+            if(pos == -1) cout << "Registro no existe\n";
+            else MostrarCliente(pos);
             system("pause");
             break;
         case 5:
@@ -221,14 +216,14 @@ void MenuCompleteClient()
 
 void guardarClientes()
 {
-    registroCliente = fopen("datos.bin", "wb");
+    registroCliente = fopen("datosCliente.bin", "wb");
     fwrite(Clien, sizeof(cliente), lastReg, registroCliente);
     fclose(registroCliente);
 }
 
 void leerCliente()
 {
-    registroCliente = fopen("datos.bin", "rb");
+    registroCliente = fopen("datosCliente.bin", "rb");
     if (registroCliente == NULL)
     {
         return;

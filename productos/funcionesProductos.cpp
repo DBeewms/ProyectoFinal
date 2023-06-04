@@ -65,7 +65,7 @@ int BuscarProducto(char id[])
 
 void MostrarProductos()
 {
-    system("cls||clear");
+    system("cls");
     if (lastRegP == 0)
     {
         cout << "No hay registro " << endl;
@@ -78,11 +78,6 @@ void MostrarProductos()
     }
     cout << "Ultimo producto..... " << endl;
 }
-
-/*void editarProducto(producto product, int pos)
-{
-    productos[pos];
-}*/
 
 void borrarProducto(int pos)
 {
@@ -183,7 +178,7 @@ void MenuCompleteProduct()
             cin >> ID;
             pos = BuscarProducto(ID);
             productos = getProducto(pos);
-            cout << "¿Realmente quiere solicitar elimimar a este producto: " << productos.nombreP << "" << productos.IDP << " ? " << endl;
+            cout << "Realmente quiere solicitar elimimar a este producto: " << productos.nombreP << " " << productos.IDP << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
             cin >> resp;
             if (resp == 1)
@@ -227,14 +222,14 @@ void MenuCompleteProduct()
 
 void guardarProducto()
 {
-    registroProducto = fopen("datos.bin", "wb");
+    registroProducto = fopen("datosProducto.bin", "wb");
     fwrite(productos, sizeof(producto), lastRegP, registroProducto);
     fclose(registroProducto);
 }
 
 void leerProducto()
 {
-    registroProducto = fopen("datos.bin", "rb");
+    registroProducto = fopen("datosProducto.bin", "rb");
     if (registroProducto == NULL)
     {
         return;
