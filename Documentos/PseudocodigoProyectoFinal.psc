@@ -242,6 +242,56 @@ SubProceso eliminarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_u
 	FinSi
 FinSubProceso
 
+//facturas
+
+SubProceso encabezadoFactura(cantidad_facturas, cliente, fecha)
+	Escribir "===============Bienvenido a MCSerigraph===============";
+	Escribir "Direccion: Masaya";
+    Escribir "Telefono: 25613023";
+	Escribir "Factura #: ", cantidad_facturas;
+    Escribir "Fecha: ", fecha[cantidad_facturas];
+    Escribir "======================================================";
+    Escribir "Cliente: ", cliente[cantidad_facturas];
+FinSubProceso
+
+SubProceso pieDeFactura()
+	Escribir "======================================================";
+	Escribir "Gracias por su compra";
+	Escribir "======================================================";
+FinSubProceso
+
+SubProceso imprimirDetalle(cantidad_facturas, cliente, fecha, cantidadTemporal, precioTemporal, montoTemporal, totalTemporal, producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto)
+	Definir i Como Entero;
+	Definir j Como Entero;
+	Definir cantidadProductFactura Como Entero;
+	cantidadProductFactura <- 0;
+	Definir contador1 Como Entero;
+	contador1<-1;
+	
+	Escribir "Ingresa la fecha: ";
+	Leer fecha[cantidad_facturas];
+	Escribir "Ingresa el cliente: ";
+	Leer cliente[cantidad_facturas];
+	
+	encabezadoFactura(cantidad_facturas, cliente, fecha);
+	
+	Escribir "Cuantos productos desea facturar?";
+	Leer cantidadProductFactura;
+	Para j <- 0 Hasta cantidadProductFactura-1 Con Paso 1 Hacer
+		Escribir "Ingrese el ID del producto:";
+		Leer id_producto[contador1];
+		Para i <- 0 Hasta cantidad_productos-1 Con Paso 1 Hacer
+			Si idProducto[i] == id_producto[contador1] Entonces
+				Escribir producto[i];
+				Escribir precio[i];
+			FinSi
+		FinPara
+	FinPara
+	pieDeFactura();
+FinSubProceso
+
+
+
 //pricipal
 
 Proceso proyectoFinal
@@ -257,14 +307,24 @@ Proceso proyectoFinal
 	Definir usuario, idUsuario, password Como Caracter;
     Dimension usuario[50], idUsuario[50], password[50];
 	
-    Definir cantidad_clientes, cantidad_productos, cantidad_usuarios Como Entero;
+    Definir cantidad_clientes, cantidad_productos, cantidad_usuarios, cantidad_facturas Como Entero;
 	Definir opcion Como Entero;
 	
+	Definir fecha, cliente Como Caracter;
+	Dimension fecha[15], cliente[50];
+	
 	Definir EncontradoDelCliente Como Logico;
+	
+	Definir cantidadTemporal, precioTemporal, montoTemporal, totalTemporal Como Real;
+	cantidadTemporal <- 0;
+	precioTemporal <- 0;
+	montoTemporal <- 0;
+	totalTemporal <- 0;
 	
 	cantidad_productos <- 0;
     cantidad_clientes <- 0;
 	cantidad_usuarios <- 0;
+	cantidad_facturas <- 0;
     opcion <- 0;
 	
 	Definir i, j Como Entero;
@@ -274,7 +334,7 @@ Proceso proyectoFinal
 	
 	Repetir
 		Escribir " ";
-		Escribir "Bienvenido.";
+		Escribir "===============Bienvenido a MCSerigraph===============";
         Escribir "Elija una opción:";
 		Escribir "Clientes...";
         Escribir "1. Agregar cliente";
@@ -291,6 +351,8 @@ Proceso proyectoFinal
 		Escribir "10. Mostrar usuarios";
 		Escribir "11. Editar usuarios";
 		Escribir "12. Eliminar usuarios";
+		Escribir "Facturas...";
+		Escribir "13. Generar factura...";
 		Escribir "Salir del programa...";
 		Escribir "20. Salir.";
         Leer opcion;
@@ -324,6 +386,8 @@ Proceso proyectoFinal
 				editarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
 			12:
 				eliminarUsuario(usuario, idUsuario, password, cantidad_usuarios, id_usuario);
+			13:
+				imprimirDetalle(cantidad_facturas, cliente, fecha, cantidadTemporal, precioTemporal, montoTemporal, totalTemporal, producto, cantidad, idProducto, descripcion, precio, cantidad_productos, id_producto);
 			20:	Escribir "Saliendo del programa...";
 			De Otro Modo:
 				Escribir "Opción inválida. Inténtalo de nuevo.";
