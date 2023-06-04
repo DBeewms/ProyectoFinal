@@ -139,7 +139,7 @@ void menuEmpleado()
     do
     {
         system("cls");
-        cout << "-----------------Bienvenido al menu de MCSerigraph--------------" << endl;
+        cout << "-----------------Bienvenido al menu de empleados de MCSerigraph--------------" << endl;
         cout << "Seleccione una de las opciones: " << endl;
         cout << "1. Ingresar a clientes " << endl;
         cout << "2. Ingresar a productos " << endl;
