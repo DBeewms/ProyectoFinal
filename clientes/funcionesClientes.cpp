@@ -136,9 +136,13 @@ void MenuCompleteClient()
         {
         case 1:
             system("cls");
+            gotoxy1(10,5);
             cout << " ID: " << endl;
+            gotoxy1(10,6);
             cout << " Nombre: " << endl;
+            gotoxy1(10,7);
             cout << " Apellido: " << endl;
+            gotoxy1(10,19);
             scanf(" %[^\n]", Clientes.ID);
             scanf(" %[^\n]", Clientes.nombre);
             scanf(" %[^\n]", Clientes.apellido);
