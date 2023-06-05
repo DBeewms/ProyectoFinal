@@ -136,9 +136,13 @@ void MenuCompleteUsuario()
         {
         case 1:
             system("cls");
+            gotoxy3(10,5);
             cout << " ID: " << endl;
+            gotoxy3(10,6);
             cout << " Nombre: " << endl;
+            gotoxy3(10,7);
             cout << " Email: " << endl;
+            gotoxy3(10,8);
             cout << " Password:" << endl;
             scanf(" %[^\n]", usuarios.IDU);
             scanf(" %[^\n]", usuarios.nombreU);
