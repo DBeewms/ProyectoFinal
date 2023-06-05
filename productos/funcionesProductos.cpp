@@ -138,9 +138,13 @@ void MenuCompleteProduct()
         {
         case 1:
             system("cls");
+            gotoxy2(10,4);
             cout << " ID: " << endl;
+            gotoxy2(10,5);
             cout << " Nombre: " << endl;
+            gotoxy2(10,6);
             cout << " DESCRIPCION: " << endl;
+            gotoxy2(10,7);
             cout << " PRECIO:" <<endl;
             scanf(" %[^\n]", productos.IDP);
             scanf(" %[^\n]", productos.nombreP);
