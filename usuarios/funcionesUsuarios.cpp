@@ -203,7 +203,7 @@ void MenuCompleteUsuario()
         case 4:
             system("cls");
             cout << " Escribe el ID del usuario a buscar: " << endl;
-            scanf(" %[^\n]", usuarios.IDU);
+            scanf(" %[^\n]", ID);
             pos = buscarUsuario(ID);
             if (pos == -1)
                 cout << "Registro no existe\n";
