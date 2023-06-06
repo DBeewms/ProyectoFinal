@@ -160,18 +160,29 @@ void MenuCompleteProduct()
             break;
         case 2:
             system("cls");
+            gotoxy2(10,5);
             cout << "Escribe el ID a buscar: " << endl;
+            gotoxy2(34,5);
             scanf(" %[^\n]", productos.IDP);
             pos = BuscarProducto(ID);
             MostrarProducto(pos);
+            gotoxy2(10,6);
             cout << " Datos a editar " << endl;
+            gotoxy2(10,7);
             cout << " ID: " << endl;
+            gotoxy2(15,7);
             scanf(" %[^\n]", productos.IDP);
+            gotoxy2(10,8);
             cout << " Nombre: " << endl;
+            gotoxy2(18,8);
             scanf(" %[^\n]", productos.nombreP);
+            gotoxy2(10,9);
             cout << " Descripcion: " << endl;
+            gotoxy2(20,9);
             scanf(" %[^\n]", productos.descripcion);
+            gotoxy2(10,10);
             cout << " Precio" << endl;
+            gotoxy2(12,10);
             scanf("%f", &productos.precio);
             //editarProducto(productos, pos);
             cout << " Actualizando registro.......... " << endl;
@@ -204,7 +215,9 @@ void MenuCompleteProduct()
         case 4:
             //copiar estrucutura en demas funciones, clientes y usuarios
             system("cls");
+            gotoxy2(10,5);
             cout << " Escribe el ID del producto a buscar: " << endl;
+            gotoxy2(35,5);
             scanf(" %[^\n]", ID);
             pos = BuscarProducto(ID);
             if(pos == -1) cout << "Registro no existe\n";
