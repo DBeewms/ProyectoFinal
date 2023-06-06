@@ -146,9 +146,13 @@ void MenuCompleteProduct()
             cout << " DESCRIPCION: " << endl;
             gotoxy2(10,7);
             cout << " PRECIO:" <<endl;
+            gotoxy2(15,4);
             scanf(" %[^\n]", productos.IDP);
+            gotoxy2(19,5);
             scanf(" %[^\n]", productos.nombreP);
+            gotoxy2(24,6);
             scanf(" %[^\n]", productos.descripcion);
+            gotoxy2(19,7);
             scanf("%f", &productos.precio);
             agregarProducto(productos);
             system("pause");
