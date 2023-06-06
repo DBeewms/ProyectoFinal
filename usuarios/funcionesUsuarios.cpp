@@ -144,9 +144,13 @@ void MenuCompleteUsuario()
             cout << " Email: " << endl;
             gotoxy3(10,8);
             cout << " Password:" << endl;
+            gotoxy3(15,5);
             scanf(" %[^\n]", usuarios.IDU);
+            gotoxy3(19,6);
             scanf(" %[^\n]", usuarios.nombreU);
+            gotoxy3(18,7);
             scanf(" %[^\n]", usuarios.email);
+            gotoxy3(21,8);
             scanf(" %[^\n]", usuarios.password);
 
             agregarUsuario(usuarios);
