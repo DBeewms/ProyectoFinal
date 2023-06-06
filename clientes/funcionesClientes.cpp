@@ -154,16 +154,25 @@ void MenuCompleteClient()
             break;
         case 2:
             system("cls");
+            gotoxy1(10,5);
             cout << "Escribe el ID a buscar: " << endl;
+            gotoxy1(34,5);
             scanf(" %[^\n]", Clientes.ID);
             pos = BuscarCliente(ID);
             MostrarCliente(pos);
+            gotoxy1(10,6);
             cout << " Datos a editar " << endl;
+            gotoxy1(10,7);
             cout << " ID: " << endl;
+            gotoxy1(15,7);
             scanf(" %[^\n]", Clientes.ID);
+            gotoxy1(10,8);
             cout << " Nombre: " << endl;
+            gotoxy1(18,8);
             scanf(" %[^\n]", Clientes.nombre);
+            gotoxy1(10,9);
             cout << " Apellido: " << endl;
+            gotoxy1(21,9);
             scanf(" %[^\n]", Clientes.apellido);
             //editarCliente(Clientes, pos);
             cout << " Actualizando registro.......... " << endl;
@@ -196,7 +205,7 @@ void MenuCompleteClient()
         case 4:
             system("cls");
             cout << " Escribe el ID a buscar: " << endl;
-            scanf(" %[^\n]", Clientes.ID);
+            scanf(" %[^\n]", ID);
             pos = BuscarCliente(ID);
             if(pos == -1) cout << "Registro no existe\n";
             else MostrarCliente(pos);
