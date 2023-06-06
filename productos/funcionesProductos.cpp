@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +9,7 @@ using namespace std;
 
 int lastRegP = 0;
 
-void agregarProducto(producto productos);
+void agregarProducto(producto product);
 
 void MostrarProducto(int pos);
 void MostrarProductos();
@@ -16,7 +17,7 @@ int BuscarProducto(char id[]);
 void ProductoInicial(int pos);
 producto getProducto(int pos);
 
-void editarProducto(producto productos, int pos);
+void editarProducto(producto product2, int pos);
 
 void borrarProducto(int pos);
 
@@ -80,6 +81,10 @@ void MostrarProductos()
     cout << "Ultimo producto..... " << endl;
 }
 
+void editarProducto(producto product2, int pos){
+    productos[pos]=product2;
+}
+
 void borrarProducto(int pos)
 {
     if (pos == lastRegP)
@@ -126,7 +131,7 @@ void MenuCompleteProduct()
 {
     int op, pos, resp;
     char ID[14];
-    producto productos;
+    producto product2;
     leerProducto();
 
     do
@@ -147,44 +152,33 @@ void MenuCompleteProduct()
             gotoxy2(10,7);
             cout << " PRECIO:" <<endl;
             gotoxy2(15,4);
-            scanf(" %[^\n]", productos.IDP);
+            scanf(" %[^\n]", product2.IDP);
             gotoxy2(19,5);
-            scanf(" %[^\n]", productos.nombreP);
+            scanf(" %[^\n]", product2.nombreP);
             gotoxy2(24,6);
-            scanf(" %[^\n]", productos.descripcion);
+            scanf(" %[^\n]", product2.descripcion);
             gotoxy2(19,7);
-            scanf("%f", &productos.precio);
-            agregarProducto(productos);
+            scanf("%f", &product2.precio);
+            agregarProducto(product2);
             system("pause");
 
             break;
         case 2:
             system("cls");
-            gotoxy2(10,5);
             cout << "Escribe el ID a buscar: " << endl;
-            gotoxy2(34,5);
-            scanf(" %[^\n]", productos.IDP);
+            scanf(" %[^\n]", product2.IDP);
             pos = BuscarProducto(ID);
             MostrarProducto(pos);
-            gotoxy2(10,6);
             cout << " Datos a editar " << endl;
-            gotoxy2(10,7);
             cout << " ID: " << endl;
-            gotoxy2(15,7);
-            scanf(" %[^\n]", productos.IDP);
-            gotoxy2(10,8);
+            scanf(" %[^\n]", product2.IDP);
             cout << " Nombre: " << endl;
-            gotoxy2(18,8);
-            scanf(" %[^\n]", productos.nombreP);
-            gotoxy2(10,9);
+            scanf(" %[^\n]", product2.nombreP);
             cout << " Descripcion: " << endl;
-            gotoxy2(20,9);
-            scanf(" %[^\n]", productos.descripcion);
-            gotoxy2(10,10);
+            scanf(" %[^\n]", product2.descripcion);
             cout << " Precio" << endl;
-            gotoxy2(12,10);
-            scanf("%f", &productos.precio);
-            //editarProducto(productos, pos);
+            scanf("%f", &product2.precio);
+            editarProducto(product2, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -197,8 +191,8 @@ void MenuCompleteProduct()
             cout << "Escribe el ID del producto: " << endl;
             cin >> ID;
             pos = BuscarProducto(ID);
-            productos = getProducto(pos);
-            cout << "Realmente quiere solicitar elimimar a este producto: " << productos.nombreP << " " << productos.IDP << " ? " << endl;
+            product2 = getProducto(pos);
+            cout << "Realmente quiere solicitar elimimar a este producto: " << product2.nombreP << " " << product2.IDP << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
             cin >> resp;
             if (resp == 1)
