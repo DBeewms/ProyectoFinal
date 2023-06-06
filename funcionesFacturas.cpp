@@ -6,6 +6,7 @@
 #include "productos/funcionesProductos.cpp"
 #include "usuarios/funcionesUsuarios.cpp"
 #include "facturas.h"
+#include "Auxiliar.h"
 
 using namespace std;
 
@@ -163,11 +164,17 @@ void MenuCompleteFactura()
         case 1:
             system("cls");
             facturas.numFactura = lastFactura + 1;
+            gotoxy4(10,5);
             cout << "Ingresa la fecha:";
+            gotoxy4(28,5);
             scanf(" %[^\n]", facturas.fecha);
+            gotoxy4(10,6);
             cout << "Ingresa el cliente:";
+            gotoxy4(30,6);
             scanf(" %[^\n]", facturas.nombreCliente);
+            gotoxy4(10,7);
             cout << "Ingresa una observacion:";
+            gotoxy4(35,7);
             scanf(" %[^\n]", facturas.observacion);
             agregarFactura(facturas);
             cout << "Cuantos productos va a facturar?: ";
