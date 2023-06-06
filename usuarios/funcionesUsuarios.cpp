@@ -159,18 +159,29 @@ void MenuCompleteUsuario()
             break;
         case 2:
             system("cls");
+            gotoxy3(10,5);
             cout << "Escribe el ID a buscar: " << endl;
+            gotoxy3(34,5);
             scanf(" %[^\n]", usuarios.IDU);
             pos = buscarUsuario(ID);
             mostrarUsuario(pos);
+            gotoxy3(10,6);
             cout << " Datos a editar " << endl;
+            gotoxy3(10,7);
             cout << " ID: " << endl;
+            gotoxy3(15,7);
             scanf(" %[^\n]", usuarios.IDU);
+            gotoxy3(10,8);
             cout << " Nombre: " << endl;
+            gotoxy3(19,8);
             scanf(" %[^\n]", usuarios.nombreU);
+            gotoxy3(10,9);
             cout << " email" << endl;
+            gotoxy3(18,9);
             scanf(" %[^\n]", usuarios.email);
+            gotoxy3(10,10);
             cout << " Contraseña" << endl;
+            gotoxy3(21,10);
             scanf(" %[^\n]", usuarios.password);
             // editarUsuario(usuarios, pos);
             cout << " Actualizando registro.......... " << endl;
@@ -202,7 +213,9 @@ void MenuCompleteUsuario()
             break;
         case 4:
             system("cls");
+            gotoxy3(10,5);
             cout << " Escribe el ID del usuario a buscar: " << endl;
+            gotoxy3(53,5);
             scanf(" %[^\n]", ID);
             pos = buscarUsuario(ID);
             if (pos == -1)
