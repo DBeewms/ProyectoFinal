@@ -207,7 +207,7 @@ void MenuCompleteClient()
             system("cls");
             gotoxy1(10,5);
             cout << " Escribe el ID a buscar: " << endl;
-            gotoxy1(34,5);
+            gotoxy1(35,5);
             scanf(" %[^\n]", ID);
             pos = BuscarCliente(ID);
             if(pos == -1) cout << "Registro no existe\n";
