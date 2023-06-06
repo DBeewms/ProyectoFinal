@@ -40,7 +40,7 @@ void mostrarUsuario(int pos)
     cout << "ID:" << usuarios[pos].IDU << endl;
     cout << "NOMBRE DEL USUARIO:" << usuarios[pos].nombreU << endl;
     cout << "EMAIL:" << usuarios[pos].email << endl;
-    cout << "CONTRASEÑA:" << usuarios[pos].password << endl;
+    cout << "PASSWORD:" << usuarios[pos].password << endl;
 }
 
 usuario getUsuarios(int pos)
