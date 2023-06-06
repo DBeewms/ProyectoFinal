@@ -40,6 +40,7 @@ void agregarCliente(cliente Cliente)
 
 void MostrarCliente(int pos)
 {
+    
     cout << "ID: " << Clien[pos].ID << endl;
     cout << "NOMBRE: " << Clien[pos].nombre << endl;
     cout << "APELLIDO: " << Clien[pos].apellido << endl;
@@ -110,7 +111,7 @@ int menuC()
     cout << "Seleccione una de las opciones " << endl;
     cout << "Ver la cantidad de clientes registrados " << lastReg << endl;
     cout << "1. Agregar cliente " << endl;
-    cout << "2. Editar cliete " << endl;
+    cout << "2. Editar cliente " << endl;
     cout << "3. Eliminar cliente " << endl;
     cout << "4. Buscar cliente " << endl;
     cout << "5. Mostrar todos los clientes " << endl;
@@ -204,7 +205,9 @@ void MenuCompleteClient()
             break;
         case 4:
             system("cls");
+            gotoxy1(10,5);
             cout << " Escribe el ID a buscar: " << endl;
+            gotoxy1(34,5);
             scanf(" %[^\n]", ID);
             pos = BuscarCliente(ID);
             if(pos == -1) cout << "Registro no existe\n";
