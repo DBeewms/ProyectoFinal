@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,9 +41,11 @@ void agregarCliente(cliente Cliente)
 
 void MostrarCliente(int pos)
 {
-    
+    //gotoxy1(10,6);
     cout << "ID: " << Clien[pos].ID << endl;
+    //gotoxy1(10,7);
     cout << "NOMBRE: " << Clien[pos].nombre << endl;
+    //gotoxy1(10,8);
     cout << "APELLIDO: " << Clien[pos].apellido << endl;
 }
 
@@ -79,6 +82,10 @@ void MostrarClientes()
         MostrarCliente(i);
     }
     cout << "Ultimo cliente..... " << endl;
+}
+
+void editarCliente(cliente Clientes, int pos){
+    Clien[pos]=Clientes;
 }
 
 void borrarCliente(int pos)
@@ -124,7 +131,7 @@ int menuC()
 void MenuCompleteClient()
 {
     int op, pos, resp;
-    char ID[14];
+    char IDC[14];
     cliente Clientes;
     leerCliente();
 
@@ -155,27 +162,18 @@ void MenuCompleteClient()
             break;
         case 2:
             system("cls");
-            gotoxy1(10,5);
             cout << "Escribe el ID a buscar: " << endl;
-            gotoxy1(34,5);
             scanf(" %[^\n]", Clientes.ID);
-            pos = BuscarCliente(ID);
+            pos = BuscarCliente(IDC);
             MostrarCliente(pos);
-            gotoxy1(10,6);
             cout << " Datos a editar " << endl;
-            gotoxy1(10,7);
             cout << " ID: " << endl;
-            gotoxy1(15,7);
             scanf(" %[^\n]", Clientes.ID);
-            gotoxy1(10,8);
             cout << " Nombre: " << endl;
-            gotoxy1(18,8);
             scanf(" %[^\n]", Clientes.nombre);
-            gotoxy1(10,9);
             cout << " Apellido: " << endl;
-            gotoxy1(21,9);
             scanf(" %[^\n]", Clientes.apellido);
-            //editarCliente(Clientes, pos);
+            editarCliente(Clientes, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -186,8 +184,8 @@ void MenuCompleteClient()
                 break;
             }
             cout << "Escribe el ID del cliente: " << endl;
-            cin >> ID;
-            pos = BuscarCliente(ID);
+            cin >> IDC;
+            pos = BuscarCliente(IDC);
             Clientes = getClientes(pos);
             cout << "Realmente quiere solicitar elimimar a este cliente: " << Clientes.nombre << " " << Clientes.apellido << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
@@ -208,8 +206,8 @@ void MenuCompleteClient()
             gotoxy1(10,5);
             cout << " Escribe el ID a buscar: " << endl;
             gotoxy1(35,5);
-            scanf(" %[^\n]", ID);
-            pos = BuscarCliente(ID);
+            scanf(" %[^\n]", IDC);
+            pos = BuscarCliente(IDC);
             if(pos == -1) cout << "Registro no existe\n";
             else MostrarCliente(pos);
             system("pause");
