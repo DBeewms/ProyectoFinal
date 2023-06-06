@@ -180,8 +180,8 @@ void MenuCompleteUsuario()
             gotoxy3(18,9);
             scanf(" %[^\n]", usuarios.email);
             gotoxy3(10,10);
-            cout << " Contraseña" << endl;
-            gotoxy3(21,10);
+            cout << " Password " << endl;
+            gotoxy3(22,10);
             scanf(" %[^\n]", usuarios.password);
             // editarUsuario(usuarios, pos);
             cout << " Actualizando registro.......... " << endl;
