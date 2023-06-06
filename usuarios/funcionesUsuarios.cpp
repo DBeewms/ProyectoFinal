@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "AuxiliarU.h"
@@ -15,9 +16,9 @@ int buscarUsuario(char IDU[]);
 void inicialUsuario(int pos);
 usuario getUsuarios(int pos);
 /*Update*/
-void editarUsuario(usuario Usuarios, int pos);
+void editarUsuario(usuario User2, int pos);
 /*Delete*/
-void eliminarUsuario(int pos);
+void borrarUsuario(int pos);
 /*Menu*/
 int menuU();
 void MenuCompleteUsuario();
@@ -79,6 +80,10 @@ void mostrarUsuarios()
     cout << "Ultimo usuario...." << endl;
 }
 
+void editarUsuario(usuario User2, int pos){
+    usuarios[pos]=User2;
+}
+
 void borrarUsuario(int pos)
 {
     if (pos == lastRegU)
@@ -124,7 +129,7 @@ void MenuCompleteUsuario()
 {
     int op, pos, resp;
     char ID[14];
-    usuario usuarios;
+    usuario User2;
     leerUsuario();
 
     do
@@ -145,45 +150,34 @@ void MenuCompleteUsuario()
             gotoxy3(10,8);
             cout << " Password:" << endl;
             gotoxy3(15,5);
-            scanf(" %[^\n]", usuarios.IDU);
+            scanf(" %[^\n]", User2.IDU);
             gotoxy3(19,6);
-            scanf(" %[^\n]", usuarios.nombreU);
+            scanf(" %[^\n]", User2.nombreU);
             gotoxy3(18,7);
-            scanf(" %[^\n]", usuarios.email);
+            scanf(" %[^\n]", User2.email);
             gotoxy3(21,8);
-            scanf(" %[^\n]", usuarios.password);
+            scanf(" %[^\n]", User2.password);
 
-            agregarUsuario(usuarios);
+            agregarUsuario(User2);
             system("pause");
 
             break;
         case 2:
             system("cls");
-            gotoxy3(10,5);
             cout << "Escribe el ID a buscar: " << endl;
-            gotoxy3(34,5);
-            scanf(" %[^\n]", usuarios.IDU);
+            scanf(" %[^\n]", User2.IDU);
             pos = buscarUsuario(ID);
             mostrarUsuario(pos);
-            gotoxy3(10,6);
             cout << " Datos a editar " << endl;
-            gotoxy3(10,7);
             cout << " ID: " << endl;
-            gotoxy3(15,7);
-            scanf(" %[^\n]", usuarios.IDU);
-            gotoxy3(10,8);
+            scanf(" %[^\n]", User2.IDU);
             cout << " Nombre: " << endl;
-            gotoxy3(19,8);
-            scanf(" %[^\n]", usuarios.nombreU);
-            gotoxy3(10,9);
+            scanf(" %[^\n]", User2.nombreU);
             cout << " email" << endl;
-            gotoxy3(18,9);
-            scanf(" %[^\n]", usuarios.email);
-            gotoxy3(10,10);
+            scanf(" %[^\n]", User2.email);
             cout << " Password " << endl;
-            gotoxy3(22,10);
-            scanf(" %[^\n]", usuarios.password);
-            // editarUsuario(usuarios, pos);
+            scanf(" %[^\n]", User2.password);
+            editarUsuario(User2, pos);
             cout << " Actualizando registro.......... " << endl;
             system("pause");
             break;
@@ -196,8 +190,8 @@ void MenuCompleteUsuario()
             cout << "Escribe el ID del Usuario: " << endl;
             cin >> ID;
             pos = buscarUsuario(ID);
-            usuarios = getUsuarios(pos);
-            cout << "Realmente quiere solicitar elimimar a este usuarios " << usuarios.nombreU << " " << usuarios.IDU << " ? " << endl;
+            User2 = getUsuarios(pos);
+            cout << "Realmente quiere solicitar elimimar a este usuarios " << User2.nombreU << " " << User2.IDU << " ? " << endl;
             cout << "Escribe 1 para acceder y 2 para negar: " << endl;
             cin >> resp;
             if (resp == 1)
