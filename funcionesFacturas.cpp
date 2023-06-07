@@ -60,7 +60,7 @@ void encabezadoFactura(int i)
 void imprimirDetalle(int numFact)
 {
     float total = 0, monto = 0;
-    printf("PRODUCTO \t | CANTIDAD \t | PRECIO \t | TOTAL\n");
+    printf("PRODUCTO \t\t | CANTIDAD \t\t | PRECIO \t\t | TOTAL\n");
 
     for (int i = 0; i < lastDetFac; i++)
     {
@@ -70,7 +70,7 @@ void imprimirDetalle(int numFact)
 
             total = detalles[i].cantidad * detalles[i].precioP;
             monto += total;
-            printf("%s \t %3d \t %.2f \t %.2f\n", detalles[i].nomProducto, detalles[i].cantidad, detalles[i].precioP, total);
+            printf("%s \t\t\t %3d \t\t\t %.2f \t\t\t %.2f \t\t\n", detalles[i].nomProducto, detalles[i].cantidad, detalles[i].precioP, total);
         }
     }
     printf("Monto a pagar: %.2f\n", monto);
